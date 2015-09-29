@@ -17,9 +17,12 @@ ___
 #Test
 
 {% highlight csharp linenos %}
-var x = 10;
-x += y;
-Console.WriteLine(x);
+public void Foo() 
+{
+	var x = 10;
+	x += y;
+	Console.WriteLine(x);
+}
 {% endhighlight %}
 
 Just testing syntax highlighting.
