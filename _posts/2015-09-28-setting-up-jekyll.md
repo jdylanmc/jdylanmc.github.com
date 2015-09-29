@@ -9,8 +9,7 @@ categories:
 permalink: jekyll-setup
 ---
 
-Just a sample post to show some of the *typography* elements supported from **gaya** theme.
-
+Just a simple post explaining how I set up Jekyll.
 ___
 
 ### What is Jekyll?
@@ -25,3 +24,5 @@ Jekyll's a minimalist blog engine.  It's currently running this site, and can be
 4. Alternatively, scaffold up Jekyll via Jekyll Bootstrap: http://jekyllbootstrap.com/
 5. Push your sample Jekyll boilerplate up to github.
 6. See your site at accountname.github.com 
+7. Optionally configure your theme.  It should be straightforward if you've created websites before.
+8. Optionally configure your DNS provider to point your domain name to your new blog.
