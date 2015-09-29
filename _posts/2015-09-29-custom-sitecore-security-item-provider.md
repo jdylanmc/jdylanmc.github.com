@@ -40,7 +40,7 @@ So, in reality... the rule was simple:
 // rough pseudo code
 public bool UserHasAccess(User user, List<Role> roles, List<Departments> depts, List<Nodes> context)
 {
-    return user.HasOne(roles) && user.HasOne(departments) && user.Organizations.Contains(context);
+    return user.HasOne(roles) && user.HasOne(depts) && user.Organizations.Contains(context);
 }
 {% endhighlight %}
 
