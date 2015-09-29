@@ -2,19 +2,16 @@
 layout: page
 title: About me
 permalink: /about/
-banner_image: sample-banner-image-2.jpg
+banner_image: about-header.jpg
 banner_image_alt: About me
 ---
 
-Hi, I am Tom Warlker. I am a professional UI/UX designrer and web developer. I love being minimal and creative.
+Hi, I am Dylan McCurry. I am a professional software engineer specializing in .NET and Sitecore.
 
-I prefer to serve with Php and Ruby based stacks and also love to work 
-on [Jekyll][jekyll] and [Processwire CMS/CMF][pw].
 
 ### Contact me
 
-Say `Hello` at gayanvirajith@gmail.com or find
-me on
+Say `Hello` at j.dylan.mccurry@gmail.com or find me on
 
 ---
 
