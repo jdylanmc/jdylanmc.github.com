@@ -11,7 +11,7 @@ Hi, I am Dylan McCurry. I am a professional software engineer specializing in .N
 
 ### Contact me
 
-Say `Hello` at j.dylan.mccurry@gmail.com or find me on
+Say `Hello` at j.dylan.mccurry@gmail.com
 
 ---
 
