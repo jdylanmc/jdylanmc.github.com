@@ -38,9 +38,9 @@ So, in reality... the rule was simple:
 
 {% highlight csharp %}
 // rough pseudo code
-public void DoesUserHaveAccess(User user, List<Role> roles, List<Departments> departments, List<Nodes> context)
+public void UserHasAccess(User user, List<Role> roles, List<Departments> depts, List<Nodes> context)
 {
-    return user.HasAtLeastOne(roles) && user.IsAPartOfOne(departments) && user.Organizations.Contains(context);
+    return user.HasOne(roles) && user.HasOne(departments) && user.Organizations.Contains(context);
 }
 {% endhighlight %}
 
