@@ -16,10 +16,10 @@ ___
 
 #Test
 
-```c#
+{% highlight c# %}
 var x = 10;
 x += y;
 Console.WriteLine(x);
-```
+{% endhighlight %}
 
 Just testing syntax highlighting.
