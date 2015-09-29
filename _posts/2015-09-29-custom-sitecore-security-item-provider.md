@@ -20,17 +20,17 @@ For each user, the administration was simple.  The company had their own profile
 For content authoring, this was a little trickier.  There were a series of requirements that looked something like:
 
 1. For every content item, content authors have the option to specify:
-    - Zero or more roles that should see this content.
-    - Zero or more departments that should see this content.
-    - Zero or more organizational contexts which should see this content.
+    * Zero or more roles that should see this content.
+    * Zero or more departments that should see this content.
+    * Zero or more organizational contexts which should see this content.
 2. If no security rules are selected from the above, then this content is viewable to everyone.
 3. Roles in the profile management system are configurable, and Sitecore should reflect what's configured.
 4. Departments in the profile management system are configurable, and Sitecore should reflect what's configured.
 5. Organizational Context is dynamic and should come from the CRM.  
 6. To determine if a user has access to the selected Organizational context, perform this calculation (If you've taken a data structure course in the past, then the calculation here will feel familiar):
-    - Take the organizational nodes selected for the content item and convert them to a list of all leaves beneath those nodes.
-    - Take the organizational nodes selected for the user and convert them to a list of all leaves beneath those nodes.
-    - If the two lists have any intersecting values, then the user passes this security check.
+    * Take the organizational nodes selected for the content item and convert them to a list of all leaves beneath those nodes.
+    * Take the organizational nodes selected for the user and convert them to a list of all leaves beneath those nodes.
+    * If the two lists have any intersecting values, then the user passes this security check.
 
 So, in reality... the rule was simple:
 
