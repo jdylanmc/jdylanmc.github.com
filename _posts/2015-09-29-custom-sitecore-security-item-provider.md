@@ -19,9 +19,9 @@ ___
 {% highlight csharp %}
 public void Foo() 
 {
-	var x = 10;
-	x += y;
-	Console.WriteLine(x);
+    var x = 10;
+    x += y;
+    Console.WriteLine(x);
 }
 {% endhighlight %}
 
