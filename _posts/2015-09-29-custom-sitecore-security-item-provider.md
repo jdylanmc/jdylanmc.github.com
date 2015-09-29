@@ -38,7 +38,7 @@ So, in reality... the rule was simple:
 
 {% highlight csharp %}
 // rough pseudo code
-public void UserHasAccess(User user, List<Role> roles, List<Departments> depts, List<Nodes> context)
+public bool UserHasAccess(User user, List<Role> roles, List<Departments> depts, List<Nodes> context)
 {
     return user.HasOne(roles) && user.HasOne(departments) && user.Organizations.Contains(context);
 }
