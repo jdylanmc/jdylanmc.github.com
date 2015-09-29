@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "How I set up Jekyll"
-date:   2015-9-28 21:15:02
+title:  "Complex Sitecore Security"
+date:   2015-9-29 14:54:02
 description: Custom Sitecore Security with an Item Provider
 categories:
 - sitecore
