@@ -10,6 +10,7 @@ permalink: jekyll-setup
 ---
 
 Just a simple post explaining how I set up Jekyll.
+
 ___
 
 # What is Jekyll?
@@ -28,6 +29,7 @@ Jekyll's a minimalist blog engine.  It's currently running this site, and can be
 8. Optionally configure your DNS provider to point your domain name to your new blog.
 
 # For a more detailed setup, read the below...
+
 ### I didn't write this, it came with my Jekyll installation :)
 
 {% include JB/setup %}
