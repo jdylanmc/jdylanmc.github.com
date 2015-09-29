@@ -28,9 +28,9 @@ Jekyll's a minimalist blog engine.  It's currently running this site, and can be
 7. Optionally configure your theme.  It should be straightforward if you've created websites before.
 8. Optionally configure your DNS provider to point your domain name to your new blog.
 
-# For a more detailed setup, read the below...
+# For a more details, read the below...
 
-### I didn't write this, it came with my Jekyll installation :)
+## I didn't write this, it came with my Jekyll installation :)
 
 {% include JB/setup %}
 
