@@ -16,7 +16,7 @@ ___
 
 #Test
 
-{% highlight c# %}
+{% highlight csharp linenos %}
 var x = 10;
 x += y;
 Console.WriteLine(x);
