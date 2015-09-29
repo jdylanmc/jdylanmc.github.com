@@ -16,7 +16,7 @@ ___
 
 #Test
 
-{% highlight csharp linenos %}
+{% highlight csharp %}
 public void Foo() 
 {
 	var x = 10;
