@@ -8,7 +8,7 @@ categories:
 - security
 permalink: sitecore-security-item-provider
 ---
-#### First, a little back story...
+### First, a little back story...
 In one of my recent Sitecore implementations, the security requirements for the content that the end user experienced expanded beyond typical Sitecore roles.  Users were not managed in Sitecore, and instead the organization had it's own identity provider that Sitecore plugged into.  There ended up being an intersection of three primary authorization ideas:
 
 1. What roles does the user have?
@@ -46,4 +46,4 @@ Simple enough, right?
 
 ----
 
-#### So how do we build this in Sitecore?
+### So how do we build this in Sitecore?
