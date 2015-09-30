@@ -4,9 +4,8 @@ title:  "Complex Sitecore Security"
 date:   2015-9-30 17:20:46
 description: Explanation of how to create an item provider which restricts content based on the logged in user's permissions.
 categories:
-- sitecore
+- sitecore 7.2
 - security
-- 7.2
 permalink: sitecore-security-item-provider
 ---
 ### First, a little back story...
@@ -53,7 +52,7 @@ For this setup, I ended up creating a template called `Security Base`.  On `Secu
 
 1. Roles: a multilist which pulls from Role content items located at /sitecore/content/my-site/site-settings/roles.  Each Role item contains a role key that comes from the Identity Provider.
 2. Department: a multilist which pulls from Department content items located at /sitecore/content/my-site/site-settings/departments.  Each Department item contains a department key that comes from the Identity Provider.
-3. Organizational Context: an IFrame which pulls from /sitecore/my-site/organizational-context.aspx.  TODO: Blog about this implementation
+3. Organizational Context: an IFrame which pulls from /sitecore/my-site/organizational-context.aspx.
 
 The idea here is that I can now have any other template inherit from `Security Base`, and can control a derived item's visibility on the end website.  We can achieve this by overriding the Item Provider.  Data Providers in sitecore are generally used to expose data from external systems into the Sitecore CMS.  A data provider could essentially talk to anything.  The Item Provider I'm refering to, is a built in Data Provider in Sitecore which talks to the CMS's database.
 
@@ -74,7 +73,7 @@ To extend or override the built in data provider, you need to make a configurati
 </configuration>
 {% endhighlight %}
 
-After you do that, Sitecore will look to pull ALL of it's items from MyWebsite.Providers.SecurityItemProvider.ItemProvider.  Keep in mind that EVERY item that is accessed will run through this code, so it needs to be as snappy as you can make it.
+After you do that, Sitecore will look to pull ALL of it's items from SecurityItemProvider.ItemProvider.  Keep in mind that EVERY item that is accessed will run through this code, so it needs to be as snappy as you can make it.
 
 My item provider looked something like this:
 
