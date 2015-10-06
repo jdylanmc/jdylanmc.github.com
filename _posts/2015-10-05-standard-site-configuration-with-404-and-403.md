@@ -17,20 +17,20 @@ One of the things you have to do when building a new Sitecore website, is config
   <sitecore>
     <sites>
       <site patch:before="site[@name='website']" 
-			name="site_name" RequestedAuthnCtx="SITE_CTX" virtualFolder="/"
-			physicalFolder="/" requireLogin="false"	loginPage="/path/to/login" 
-			rootPath="/sitecore/content/my-site" startItem="/home" database="web"
-			domain="extranet" allowDebug="true" cacheHtml="true" 
-			htmlCacheSize="10MB" registryCacheSize="0" viewStateCacheSize="0"
-			xslCacheSize="5MB" filteredItemsCacheSize="2MB"	enablePreview="true" 
-			enableWebEdit="true" enableDebugger="true" disableClientData="false" 
+        name="site_name" RequestedAuthnCtx="SITE_CTX" virtualFolder="/"
+        physicalFolder="/" requireLogin="false"  loginPage="/path/to/login" 
+        rootPath="/sitecore/content/my-site" startItem="/home" database="web"
+        domain="extranet" allowDebug="true" cacheHtml="true" 
+        htmlCacheSize="10MB" registryCacheSize="0" viewStateCacheSize="0"
+        xslCacheSize="5MB" filteredItemsCacheSize="2MB"  enablePreview="true" 
+        enableWebEdit="true" enableDebugger="true" disableClientData="false" 
       />
       <site name="site_name">
         <patch:attribute name="hostName">
-		  yoursite.com|*yoursite*.yourdomain.com
-		</patch:attribute>
-	  </site>
-	</sites>
+          yoursite.com|*yoursite*.yourdomain.com
+        </patch:attribute>
+      </site>
+    </sites>
   </sitecore>
 </configuration>
 {% endhighlight %}
