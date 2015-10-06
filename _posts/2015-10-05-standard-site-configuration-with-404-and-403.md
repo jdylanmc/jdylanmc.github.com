@@ -10,7 +10,7 @@ categories:
 permalink: sitecore-site-configuration
 ---
 ### This is a pretty standard site configuration that I usually roll with...
-One of the things you have to do when building a new Sitecore website, is configure Sitecore to know how to resolve your home page and subpages.  It's not enough to point DNS to IIS, and IIS to your Sitecore webroot- you have to also point Sitecore to your content.  To do this, you need a configuration section like so:
+One of the things you have to do when building a new Sitecore website is tell Sitecore about your home page.  It's not enough to point DNS to IIS, and IIS to your Sitecore webroot- you have to also point Sitecore to your content.  To do this, you need a configuration section like so:
 
 {% highlight xml %}
 <configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
@@ -37,10 +37,10 @@ One of the things you have to do when building a new Sitecore website, is config
 
 There are a few tricks in this configuration section that you may find useful:
 
-* For the hostname above, you can use asterisks for wildcards, and pipes for multiple domains.  
-* You can point to the master database during development.  This will make it so that you don't have to publish in the middle of your development cycles (you know, code, compile, refresh).
-* The loginPage can point to a physical file (like an .aspx file).  You can then configure IIS to have windows authentication (or whatever mode you want) for only that file.  This means you can run a multi site instance where one site uses windows auth, and the other uses forms auth.
 * rootPath + startItem are essentially your homepage.  I almost always go with `/sitecore/content/my-site/home`
+* For the hostname above, you can use asterisks for wildcards, and pipes for multiple domains.
+* You can point to the master database during development.  This will make it so that you don't have to publish in the middle of your development cycles (you know, code, compile, refresh).
+* The loginPage can point to a content item which resolves to a page, or to a physical file (like an .aspx file).  You can then configure IIS to have windows authentication (or whatever mode you want) for only that file.  This means you can run a multi site instance where one site uses windows auth, and the other uses forms auth (or is anonymous).
 * In a multisite setup, you can have as many of these site configs as you want.  Just throw each into their own config file!
 
 After you get this configured how you like, you can then setup 404 and 403 pages directly under your home page.  These configurations look like so:
