@@ -33,7 +33,7 @@ One of the things you have to do when building a new Sitecore website, is config
 	</sites>
   </sitecore>
 </configuration>
-{% highlight %}
+{% endhighlight %}
 
 There are a few tricks in this configuration section that you may find useful:
 * For the hostname above, you can use asterisks for wildcards, and pipes for multiple domains.  
@@ -53,7 +53,7 @@ After you get this configured how you like, you can then setup 404 and 403 pages
     </settings>
   </sitecore>
 </configuration>
-{% highlight %}
+{% endhighlight %}
 
 And the 404 page is very similar:
 
@@ -68,7 +68,7 @@ And the 404 page is very similar:
     </settings>
   </sitecore>
 </configuration>
-{% highlight %}
+{% endhighlight %}
 
 Keep in mind that your 404 and 403 pages will return a 200 status code by default.  To get around this, give them a simple code behind which changes the `Response.StatusCode` and `Response.TrySkipIisCustomErrors` appropriately.  If you're rocking a multisite instance, all sites will resolve /403 and /404 relative to their `rootPath`.
 
