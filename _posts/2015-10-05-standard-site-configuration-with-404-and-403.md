@@ -36,6 +36,7 @@ One of the things you have to do when building a new Sitecore website, is config
 {% endhighlight %}
 
 There are a few tricks in this configuration section that you may find useful:
+
 * For the hostname above, you can use asterisks for wildcards, and pipes for multiple domains.  
 * You can point to the master database during development.  This will make it so that you don't have to publish in the middle of your development cycles (you know, code, compile, refresh).
 * The loginPage can point to a physical file (like an .aspx file).  You can then configure IIS to have windows authentication (or whatever mode you want) for only that file.  This means you can run a multi site instance where one site uses windows auth, and the other uses forms auth.
