@@ -24,7 +24,7 @@ One of the things you have to do when building a new Sitecore website, is config
 			htmlCacheSize="10MB" registryCacheSize="0" viewStateCacheSize="0"
 			xslCacheSize="5MB" filteredItemsCacheSize="2MB"	enablePreview="true" 
 			enableWebEdit="true" enableDebugger="true" disableClientData="false" 
-	  />
+      />
       <site name="site_name">
         <patch:attribute name="hostName">
 		  yoursite.com|*yoursite*.yourdomain.com
@@ -63,8 +63,8 @@ And the 404 page is very similar:
   <sitecore>
     <settings>
       <setting name="ItemNotFoundUrl" value="/404" />
-	  <setting name="LinkItemNotFoundUrl" value="/404" />
-	  <setting name="RequestErrors.UseServerSideRedirect" value="true" />
+      <setting name="LinkItemNotFoundUrl" value="/404" />
+      <setting name="RequestErrors.UseServerSideRedirect" value="true" />
     </settings>
   </sitecore>
 </configuration>
