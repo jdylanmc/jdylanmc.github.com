@@ -9,7 +9,7 @@ categories:
 - beginner
 permalink: sitecore-site-configuration
 ---
-### This is a pretty standard configuration that I usually roll with...
+### This is a pretty standard site configuration that I usually roll with...
 One of the things you have to do when building a new Sitecore website, is configure Sitecore to know how to resolve your home page and subpages.  It's not enough to point DNS to IIS, and IIS to your Sitecore webroot- you have to also point Sitecore to your content.  To do this, you need a configuration section like so:
 
 {% highlight xml %}
