@@ -6,14 +6,12 @@ category:
 tags: [environment, git]
 permalink: my-git-configuration-on-windows
 ---
-
+### This is just how I like to setup GIT for my development machines.
 I prefer git-bash.  There's nothing like the raw power of a shell, right?
 
 First, here's my `.bash_profile`.  Throw a file named `.bash_profile` into the root of your git-bash (aka `cd ~`) that looks like this:
 
-{% highlight shell %}
-# ~/.bash_profile
-
+{% highlight sh %}
 [[ -s ~/.bashrc ]] && source ~/.bashrc
 
 export CLICOLOR=1
@@ -81,7 +79,7 @@ Next, let's set up an editor.  I don't particularly care for VIM because I don't
 
 Go ahead and install and setup Notepad++ the way you like (I personally like the blackboard color scheme with the Hack font).  After that, navigate to your installation folder and add a file called `npp` (with no extension):
 
-{% highlight shell %}
+{% highlight sh %}
 #!/bin/sh
 "c:/Program Files (x86)/Notepad++/notepad++.exe" -multiInst -notabbar -nosession -noPlugin "$*"
 {% endhighlight %}
@@ -90,7 +88,7 @@ And add `C:\Program Files (x86)\Notepad++` to your PATH.
 
 Now you should be able to open up git-bash and type `npp` to open notepad++.  If you wanted to create a new file in your root called `foo.txt`, you could do...
 
-{% highlight %}
+{% highlight sh %}
 cd ~
 npp foo.txt
 {% endhighlight %}
@@ -99,14 +97,14 @@ Ain't that nice?
 
 Now, let's get to the global git config.  Go ahead and navigate to your root and start a new git config (or edit the existing one):
 
-{% highlight %}
+{% highlight sh %}
 cd ~
 npp .gitconfig
 {% endhighlight %}
 
 Add this to the file (change your name, of course):
 
-{% highlight config %}
+{% highlight kconfig %}
 [user]
 	name = Dylan McCurry
 	email = email@company.com
