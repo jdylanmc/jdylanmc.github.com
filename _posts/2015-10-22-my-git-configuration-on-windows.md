@@ -69,6 +69,9 @@ function prompt {
 prompt
 
 export PATH
+
+# uncomment the below line to have gitbash always start in a chosen directory
+# cd /c/git
 {% endhighlight %}
 
 Then run `source ~/.bash_profile` to reload bash.
