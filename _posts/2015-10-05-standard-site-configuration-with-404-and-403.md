@@ -3,6 +3,7 @@ layout: post
 title:  "Sitecore site configuration with 404 and 403 support"
 date:   2015-10-05 21:20:46
 description: Sample configuration for a Sitecore site.
+comments: true
 categories:
 - sitecore
 - configuration
@@ -16,14 +17,14 @@ One of the things you have to do when building a new Sitecore website is tell Si
 <configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
   <sitecore>
     <sites>
-      <site patch:before="site[@name='website']" 
+      <site patch:before="site[@name='website']"
         name="site_name" RequestedAuthnCtx="SITE_CTX" virtualFolder="/"
-        physicalFolder="/" requireLogin="false"  loginPage="/path/to/login" 
+        physicalFolder="/" requireLogin="false"  loginPage="/path/to/login"
         rootPath="/sitecore/content/my-site" startItem="/home" database="web"
-        domain="extranet" allowDebug="true" cacheHtml="true" 
+        domain="extranet" allowDebug="true" cacheHtml="true"
         htmlCacheSize="10MB" registryCacheSize="0" viewStateCacheSize="0"
-        xslCacheSize="5MB" filteredItemsCacheSize="2MB"  enablePreview="true" 
-        enableWebEdit="true" enableDebugger="true" disableClientData="false" 
+        xslCacheSize="5MB" filteredItemsCacheSize="2MB"  enablePreview="true"
+        enableWebEdit="true" enableDebugger="true" disableClientData="false"
       />
       <site name="site_name">
         <patch:attribute name="hostName">

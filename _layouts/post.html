@@ -5,8 +5,8 @@ layout: default
 
   {% if page.banner_image %}
   <div class="banner-image">
-    <img 
-        src="{{ "/assets/images/" | append: page.banner_image | prepend: site.baseurl | prepend: site.url }}" 
+    <img
+        src="{{ "/assets/images/" | append: page.banner_image | prepend: site.baseurl | prepend: site.url }}"
         alt="{{ page.banner_image_alt }}">
   </div>
   {% endif %}
@@ -26,13 +26,13 @@ layout: default
       </span> |
     {% endif %}
     <span class="post-date">
-    {{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}  
+    {{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}
     </span>
     </p>
   </header>
 
   <article class="post-content">
-    {{ content }}    
+    {{ content }}
   </article>
 
   {% if site.related_posts %}
@@ -57,17 +57,30 @@ layout: default
     {% if site.theme.show_author_info %}
       {% include author.html %}
     {% endif %}
-  
+
     {% if site.theme.show_share_buttons %}
       {% include share-buttons.html %}
-    {% endif %}  
+    {% endif %}
   </div>
-  
+
   {% if page.comments %}
     <div class="comments">
-        <a href="javascript:;" class="load-view">View Comments...</a>
         <div id="disqus_thread"></div>
-        <div id="g-comments"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'jdylanmc';
+            // var disqus_developer = 1;
+            var disqus_identifier = "{{ page.url }}";
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">
+            comments powered by <span class="logo-disqus">Disqus</span>
+        </a>
     </div>
   {% endif %}
 </div>

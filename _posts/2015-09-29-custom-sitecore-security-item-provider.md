@@ -3,6 +3,7 @@ layout: post
 title:  "Complex Sitecore Security"
 date:   2015-9-30 17:20:46
 description: Explanation of how to create an item provider which restricts content based on the logged in user's permissions.
+comments: true
 categories:
 - sitecore 7.2
 - security
@@ -48,7 +49,7 @@ Simple enough, right?
 
 ### So how do we build this in Sitecore?
 
-For this setup, I ended up creating a template called `Security Base`.  On `Security Base`, I have 3 fields: 
+For this setup, I ended up creating a template called `Security Base`.  On `Security Base`, I have 3 fields:
 
 1. Roles: a multilist which pulls from Role content items located at /sitecore/content/my-site/site-settings/roles.  Each Role item contains a role key that comes from the Identity Provider.
 2. Department: a multilist which pulls from Department content items located at /sitecore/content/my-site/site-settings/departments.  Each Department item contains a department key that comes from the Identity Provider.
@@ -87,7 +88,7 @@ public class SecurityItemProvider : Sitecore.Data.Managers.ItemProvider
     private const string SECURITY_TEMPLATE_ID = "guid of your custom security template";
 
     // the name of your site from the site config
-    private const string WEBSITE_NAME = "website_name"; 
+    private const string WEBSITE_NAME = "website_name";
 
     protected override Item ApplySecurity(Item item, SecurityCheck securityCheck)
     {
@@ -98,21 +99,21 @@ public class SecurityItemProvider : Sitecore.Data.Managers.ItemProvider
         }
 
         // make sure we have a site context
-        // detect if we're running in the target site 
+        // detect if we're running in the target site
         // make sure the security disabler isn't enabled
         // make sure we're not in page editor
-        // make sure this content item inherits from security base 
-        if (Context.Site != null 
-            && Context.Site.Name.ToLower() == WEBSITE_NAME 
-            && securityCheck != SecurityCheck.Disable 
+        // make sure this content item inherits from security base
+        if (Context.Site != null
+            && Context.Site.Name.ToLower() == WEBSITE_NAME
+            && securityCheck != SecurityCheck.Disable
             && Context.PageMode.IsNormal
             && item.IsDerivedFrom(ID.Parse(SECURITY_TEMPLATE_ID)))
         {
             // perform your calculation here to apply whatever security you need.
             // in this case, I have a collection of extension methods to help me.
             // sepcific implementation will be dependent on your use case.
-            if (item.HasOrgContextOver(Sitecore.Context.User) 
-                && Context.User.IsInDepartmentFor(item) 
+            if (item.HasOrgContextOver(Sitecore.Context.User)
+                && Context.User.IsInDepartmentFor(item)
                 && Context.User.HasRolesFor(item))
             {
                 // if the user passes the above checks, apply default security
@@ -163,7 +164,7 @@ public static class ItemExtensions
         // check if this item has any organizational contexts
         // if it does, check if they intersect with any of the user's organizational contexts
         // if it doesn't, return true/false depending on requirements
-        
+
         // unfortunately, this code is very domain specific, so I'm leaving implementation details out.
     }
 }
@@ -206,22 +207,22 @@ Of course, when my users log into the system I run a set of code that looks some
 
 {% highlight csharp %}
 // UserInfo is a poco that contains data obtained from the identity provider
-public void Login(UserInfo userInfo) 
+public void Login(UserInfo userInfo)
 {
     // be sure to keep the user's domain as extranet to enforce sitecore security rules on content
     var virtualUser = AuthenticationManager.BuildVirtualUser("extranet\\" + user, true);
-    
+
     virtualUser.Profile.FullName = userInfo.FirstName + " " + userInfo.LastName;
     virtualUser.Profile.Email = userInfo.Email;
     virtualUser.Profile.SetCustomProperty(typeof(OrganizationalContext).Name, userInfo.OrganizationalContext);
     virtualUser.Profile.Save();
-    
+
     foreach (var role in userInfo.Roles)
     {
         // in this case, RoleKey is an active directory group
         virtualUser.Roles.Add(Role.FromName("extranet\\" + role.RoleKey));
     }
-    
+
     // create the actual sitecore session for the user
     AuthenticationManager.Login(virtualUser);
 }

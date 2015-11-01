@@ -3,6 +3,7 @@ layout: post
 title: "My GIT configuration on Windows"
 description: ""
 category:
+comments: true
 tags: [environment, git]
 permalink: my-git-configuration-on-windows
 ---
