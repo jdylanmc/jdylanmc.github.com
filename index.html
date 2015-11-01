@@ -11,8 +11,8 @@ layout: default
     <div class="banner-image">
       <a href="{{ post_url }}"
         title="{{ post.title }}">
-      <img 
-          src="{{ "/assets/images/" | append: post.banner_image | prepend: site.baseurl | prepend: site.url }}" 
+      <img
+          src="{{ "/assets/images/" | append: post.banner_image | prepend: site.baseurl | prepend: site.url }}"
           alt="{% if post.banner_image_alt %}{{ post.banner_image_alt }}{% else %}{{ post.title }} {% endif %}">
       </a>
     </div>
@@ -31,7 +31,7 @@ layout: default
       </span> |
     {% endif %}
     <span class="post-date">
-    {{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}  
+    {{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}
     </span>
     </p>
 
@@ -45,19 +45,19 @@ layout: default
 
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
-  
+
   {% if paginator.next_page %}
-      <a class="pagination-item older btn" href="{{ paginator.next_page_path | prepend: site.baseurl | append: '/' | replace: '//', '/' }}">Older</a>    
+      <a class="pagination-item older btn" href="{{ paginator.next_page_path | prepend: site.baseurl | append: '/' | replace: '//', '/' }}">Older</a>
   {% else %}
     <span class="pagination-item older btn-disabled">Older</span>
   {% endif %}
-  
+
   {% if paginator.previous_page %}
     <a class="pagination-item newer btn " href="{{ paginator.previous_page_path | prepend: site.baseurl | append: '/' | replace: '//', '/' }}">Newer</a>
   {% else %}
     <span class="pagination-item newer btn-disabled">Newer</span>
-  {% endif %}  
-  
+  {% endif %}
+
 </div>
 {% endif %}
 
@@ -69,3 +69,5 @@ layout: default
     }
 }
 </script>
+
+{% comment %} todo: add comment counts- http://www.perfectlyrandom.org/2014/06/29/adding-disqus-to-your-jekyll-powered-github-pages/ {% endcomment %}
