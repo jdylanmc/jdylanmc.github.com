@@ -67,7 +67,7 @@ layout: default
     <div class="comments">
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-            var disqus_shortname = 'jdylanmc';
+            var disqus_shortname = '{{ site.theme.disqus_shortname }}';
             // var disqus_developer = 1;
             var disqus_identifier = "{{ page.url }}";
 
@@ -83,4 +83,14 @@ layout: default
         </a>
     </div>
   {% endif %}
+
+{% comment %}
+  {% if page.comments %}
+  <div class="comments">
+      <a href="javascript:;" class="load-view">View Comments...</a>
+      <div id="disqus_thread"></div>
+      <div id="g-comments"></div>
+  </div>
+  {% endif %}
+ {% endcomment %}
 </div>
