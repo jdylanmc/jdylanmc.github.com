@@ -5,47 +5,65 @@ const chunks = [
   {
     title: "home/.zshenv",
     tag: "Every Zsh invocation",
-    body: "Portable environment setup that must run for every Zsh invocation — login, interactive, or a one-off script shell. Keeping it separate from .zshrc means non-interactive tools get the right PATH and environment without paying for interactive-shell setup.",
+    path: "~/.zshenv",
+    what: "Portable environment setup — PATH, exported variables, and tool init that must run for every Zsh invocation: login, interactive, or a one-off script shell.",
+    why: "Keeping it separate from .zshrc means non-interactive tools (cron, CI steps, editor subshells) get the right environment without paying for interactive-shell setup they'll never use.",
   },
   {
     title: "home/.zshrc",
     tag: "Interactive shell",
-    body: "Owns interactive shell behavior: prompt, plugins, aliases, and the GitHub account binding described below. This is the file doing the most day-to-day work.",
+    path: "~/.zshrc",
+    what: "Interactive shell behavior: prompt, Oh My Zsh plugins, aliases, and the ghwho/ghuse GitHub account-routing functions.",
+    why: "This is the file doing the most day-to-day work, so it's the one most worth reading end to end before trusting a new machine.",
   },
   {
     title: "home/.gitconfig",
     tag: "Identity-free, shared",
-    body: "Identity-free shared Git behavior — safe to track publicly because it contains no names, emails, or credentials. Uses Delta for paged and interactive diffs.",
+    path: "~/.gitconfig",
+    what: "Shared Git behavior — aliases, Delta as the paged/interactive diff viewer, and sane defaults. Contains zero names, emails, or credentials.",
+    why: "Identity-free means it's safe to track publicly. Anything that could leak who I am or who I work for lives in untracked files instead (below).",
   },
   {
     title: "~/.gitconfig.personal / .work / .local",
     tag: "Untracked, mode 0600",
-    body: "Private, machine-specific identity files the installer creates but never commits. .gitconfig.personal is the personal identity used under ~/git/_opensource/; .gitconfig.work is an optional default identity outside it; .gitconfig.local routes which one applies. Actual names, emails, and signing identities never enter the repository.",
+    path: "~/.gitconfig.local",
+    what: "Private, machine-specific identity files the installer creates but never commits: .gitconfig.personal (used under ~/git/_opensource/), .gitconfig.work (used elsewhere), and .gitconfig.local, which routes between them by directory.",
+    why: "Actual names, emails, and signing identities never enter the repository — so the dotfiles stay public without ever risking a leaked work identity in an open-source checkout.",
   },
   {
     title: "home/.config/starship.toml",
     tag: "Prompt",
-    body: "Starship prompt configuration — linked individually so the terminal prompt is consistent across machines without pulling in anything identity-bound.",
+    path: "~/.config/starship.toml",
+    what: "Starship prompt configuration, linked on its own rather than bundled into .zshrc.",
+    why: "A consistent prompt across every machine, without pulling in anything identity-bound to get it.",
   },
   {
     title: "scripts/setup-git.sh",
     tag: "Guided setup",
-    body: "Run to configure or update Git identities interactively. Work identity routing stays inactive until a complete personal identity exists, so it can never leak into _opensource checkouts by accident.",
+    path: "~/.dotfiles/scripts/setup-git.sh",
+    what: "An interactive prompt flow to configure or update Git identities after install.",
+    why: "Work identity routing stays inactive until a complete personal identity exists, so it can never silently leak into an _opensource checkout by accident.",
   },
   {
     title: "ghwho / ghuse",
-    tag: "Account routing",
-    body: "home/.zshrc binds the gh CLI to the GitHub account matching the current directory, so a machine with multiple authenticated accounts can't act as the wrong one. ghwho reports the account in effect; ghuse <handle> pins one for the current shell; ghuse with no argument resumes directory tracking. GH_TOKEN is exported per-shell rather than swapping gh's global active account, so concurrent shells in different directories don't fight over one setting.",
+    tag: "Account routing (in .zshrc)",
+    path: "~/.zshrc",
+    what: "Shell functions binding the gh CLI to the GitHub account matching the current directory. ghwho reports the account in effect; ghuse <handle> pins one for the current shell; ghuse with no argument resumes directory tracking.",
+    why: "GH_TOKEN is exported per-shell rather than swapping gh's one global active account, so concurrent shells in different directories can't fight over — or silently inherit — the wrong identity.",
   },
   {
     title: "scripts/check-public.sh",
     tag: "Pre-commit / pre-push",
-    body: "Versioned public-content checks installed as Git hooks — a guard against ever committing something private into a repository that's meant to stay public.",
+    path: "~/.dotfiles/scripts/check-public.sh",
+    what: "Versioned checks installed as Git hooks that scan staged/pushed content for anything that looks private.",
+    why: "A guard against ever committing something private into a repository that's meant to stay public — checked by the machine, not just by memory.",
   },
   {
     title: "install.sh",
     tag: "Entry point",
-    body: "Installs declared public Homebrew dependencies, installs Oh My Zsh plus autosuggestions and syntax-highlighting, backs up conflicting live files, links repository-owned config into $HOME, installs the HerdR integration for GitHub Copilot CLI, guides Git identity setup, optionally installs Maestro (--with-maestro), and enables the pre-commit/pre-push checks.",
+    path: "~/.dotfiles/install.sh",
+    what: "Installs declared public Homebrew dependencies, installs Oh My Zsh plus plugins, backs up conflicting live files, links repository-owned config into $HOME, installs the HerdR integration for GitHub Copilot CLI, guides Git identity setup, optionally installs Maestro (--with-maestro), and enables the pre-commit/pre-push hooks.",
+    why: "One script, run once per machine — so a fresh Mac reaches the exact same environment as every other one, instead of a remembered checklist.",
   },
 ];
 ---
@@ -81,9 +99,24 @@ cd ~/.dotfiles
   <div>
     {chunks.map((c) => (
       <div class="chunk">
+        <div class="chunk-head">
+          <h3><code>{c.title}</code></h3>
+          <button class="copy-btn" type="button" data-copy={c.path} aria-label={`Copy path ${c.path}`}>
+            <span class="copy-label">{c.path}</span>
+            <span class="copy-action">Copy</span>
+          </button>
+        </div>
         <span class="tag">{c.tag}</span>
-        <h3><code>{c.title}</code></h3>
-        <p class="muted">{c.body}</p>
+        <div class="chunk-ww">
+          <div>
+            <span class="chunk-wlabel">What</span>
+            <p class="muted">{c.what}</p>
+          </div>
+          <div>
+            <span class="chunk-wlabel">Why</span>
+            <p class="muted">{c.why}</p>
+          </div>
+        </div>
       </div>
     ))}
   </div>
@@ -97,4 +130,84 @@ cd ~/.dotfiles
   </p>
 
   <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+
+  <style>
+    .chunk-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .chunk-head h3 {
+      margin: 0;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      background: var(--bg);
+      color: var(--fg-muted);
+      border: var(--border-width) solid var(--border);
+      border-radius: calc(var(--radius) / 2 + 2px);
+      padding: 0.3rem 0.5rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .copy-btn:hover {
+      border-color: var(--accent);
+      color: var(--fg);
+    }
+    .copy-btn .copy-action {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .copy-btn.copied .copy-action {
+      color: var(--fg);
+    }
+    .chunk-ww {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 0.75rem;
+    }
+    .chunk-wlabel {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+  </style>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const value = btn.dataset.copy || "";
+        try {
+          await navigator.clipboard.writeText(value);
+        } catch {
+          const ta = document.createElement("textarea");
+          ta.value = value;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+        }
+        const action = btn.querySelector(".copy-action");
+        const original = action?.textContent;
+        if (action) action.textContent = "Copied!";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          if (action && original) action.textContent = original;
+          btn.classList.remove("copied");
+        }, 1500);
+      });
+    });
+  </script>
 </Layout>
