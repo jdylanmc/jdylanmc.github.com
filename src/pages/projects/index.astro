@@ -1,6 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
+const dotfiles = {
+  href: "/projects/dotfiles",
+  title: "Dotfiles",
+  tags: ["Shell", "Zsh", "Git"],
+  description:
+    "The whole environment, explained chunk by chunk: what's linked into $HOME, why it's structured that way, and how identities route.",
+};
+
 const projects = [
   {
     href: "/projects/cmux-maestro",
@@ -15,13 +23,6 @@ const projects = [
     tags: ["Tauri", "Rust", "TypeScript"],
     description:
       "A macOS menu-bar app for human-owned pull request review — a queue, assigned agent review, and a publication gate a human controls.",
-  },
-  {
-    href: "/projects/dotfiles",
-    title: "Dotfiles",
-    tags: ["Shell", "Zsh", "Git"],
-    description:
-      "The whole environment, explained chunk by chunk: what's linked into $HOME, why it's structured that way, and how identities route.",
   },
   {
     href: "/projects/cacophony",
@@ -69,6 +70,23 @@ const vintage = [
     and a reproducible setup. Not demos; this is what I actually run day to day.
   </p>
 
+  <span class="eyebrow">The foundation</span>
+  <h2>It all runs on dotfiles</h2>
+  <div class="card-grid">
+    <a class="card" href={dotfiles.href}>
+      <h3>{dotfiles.title}</h3>
+      <p class="muted">{dotfiles.description}</p>
+      <div>
+        {dotfiles.tags.map((t) => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
+    </a>
+  </div>
+
+  <hr />
+
+  <h2>Built on top of it</h2>
   <div class="card-grid">
     {projects.map((p) => (
       <a class="card" href={p.href} target={p.external ? "_blank" : undefined} rel={p.external ? "noreferrer" : undefined}>

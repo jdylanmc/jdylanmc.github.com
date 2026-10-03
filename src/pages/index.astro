@@ -13,11 +13,6 @@ const projects = [
     description: "A menu-bar app so pull requests get human-owned review, not rubber-stamps.",
   },
   {
-    href: "/projects/dotfiles",
-    title: "Dotfiles",
-    description: "The environment, chunk by chunk — what every file does and why it's there.",
-  },
-  {
     href: "/projects/cacophony",
     title: "Cacophony",
     description: "Adversarial PR review by six AI personas, so one agent's code doesn't just get rubber-stamped by another.",
@@ -50,10 +45,27 @@ const projects = [
 
   <hr />
 
-  <h2>My digital garden</h2>
+  <span class="eyebrow">The foundation</span>
+  <h2>It all runs on dotfiles</h2>
   <p class="muted">
-    The tooling I've built to keep an AI direct report honest, reviewable, and productive. Each
-    project below has its own page.
+    Before any of this, Claude had to understand the environment it was running in. So we went
+    chunk by chunk — every shell file, every alias, every identity-routing rule — until it could
+    explain why each piece is there.
+  </p>
+  <div class="card-grid">
+    <a class="card" href="/projects/dotfiles">
+      <h3>Dotfiles</h3>
+      <p class="muted">The environment, chunk by chunk — what every file does and why it's there.</p>
+    </a>
+  </div>
+
+  <hr />
+
+  <h2>So I had Claude build my digital environment</h2>
+  <p class="muted">
+    Management, it turns out, means delegating. So Claude built the tooling that keeps himself —
+    and every other AI direct report — honest, reviewable, and productive. Each project below has
+    its own page.
   </p>
 
   <div class="card-grid">
