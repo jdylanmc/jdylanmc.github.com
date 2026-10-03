@@ -1,7 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const projects = [
+const vintage = [
+  {
+    href: "/projects/particle-engine",
+    title: "JS Particle Engine",
+    description: "A hand-rolled WebGL particle system from a game engine architecture course.",
+  },
+  {
+    href: "/projects/wikipedia-visualization",
+    title: "Wikipedia Visualization",
+    description: "A live 3D force-directed graph of Wikipedia topics, built in grad school.",
+  },
+  {
+    href: "/projects/us-map",
+    title: "Interactive US Map",
+    description: "A TopoJSON/D3 map of US states with click-to-highlight and labeled popouts.",
+  },
+];
+
+const tools = [
+  {
+    href: "/projects/dotfiles",
+    title: "Dotfiles",
+    description: "The environment, chunk by chunk — what every file does and why it's there.",
+  },
   {
     href: "/projects/cmux-maestro",
     title: "CMUX Maestro",
@@ -18,6 +41,18 @@ const projects = [
     description: "Adversarial PR review by six AI personas, so one agent's code doesn't just get rubber-stamped by another.",
   },
   {
+    href: "https://github.com/jdylanmc/notch",
+    title: "Notch",
+    description: "Forked an upstream app and hacked it into my own thing.",
+    external: true,
+  },
+  {
+    href: "https://github.com/jdylanmc/agent-skills",
+    title: "Agent Skills",
+    description: "How I actually think about software development now.",
+    external: true,
+  },
+  {
     href: "https://jdylanmc.github.io/topo-code/",
     title: "Topocode",
     description: "Living architecture diagrams generated from the repository itself.",
@@ -28,50 +63,16 @@ const projects = [
 
 <Layout title="Dylan McCurry — I manage an AI now">
   <span class="eyebrow">Hi, I'm Dylan</span>
-  <h1>I was a software engineer for 15 years.</h1>
+  <h1>I was a code monkey for 15 years.</h1>
   <h1>
     Then some guy named <span style="color: var(--accent)">Claude</span> took my job.
   </h1>
   <p class="muted" style="font-size: 1.1rem; max-width: 60ch;">
-    So I became his manager. Turns out fifteen years of writing code was decent preparation for
-    reviewing someone else's — even when that someone else is an AI, works at 3am, and has never
-    once asked for a raise.
+    Now I just shepherd slop. Call me 🤙.
   </p>
 
   <div style="margin: 2rem 0; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-    <a class="btn" href="/projects">My environment</a>
-  </div>
-
-  <hr />
-
-  <span class="eyebrow">The foundation</span>
-  <h2>It all runs on dotfiles</h2>
-  <p class="muted">
-    Before any of this, Claude had to understand the environment it was running in. So we went
-    chunk by chunk — every shell file, every alias, every identity-routing rule — until it could
-    explain why each piece is there.
-  </p>
-  <div class="card-grid">
-    <a class="card" href="/projects/dotfiles">
-      <h3>Dotfiles</h3>
-      <p class="muted">The environment, chunk by chunk — what every file does and why it's there.</p>
-    </a>
-  </div>
-
-  <hr />
-
-  <h2>So I had Claude build my digital environment</h2>
-  <p class="muted">
-    These are the tools. Claude built them, I use them, and each one has its own page below.
-  </p>
-
-  <div class="card-grid">
-    {projects.map((p) => (
-      <a class="card" href={p.href} target={p.external ? "_blank" : undefined} rel={p.external ? "noreferrer" : undefined}>
-        <h3>{p.title}{p.external ? " ↗" : ""}</h3>
-        <p class="muted">{p.description}</p>
-      </a>
-    ))}
+    <a class="btn" href="/environment">My environment</a>
   </div>
 
   <hr />
@@ -83,17 +84,28 @@ const projects = [
     an interactive US map.
   </p>
   <div class="card-grid">
-    <a class="card" href="/projects/particle-engine">
-      <h3>JS Particle Engine</h3>
-      <p class="muted">A hand-rolled WebGL particle system from a game engine architecture course.</p>
-    </a>
-    <a class="card" href="/projects/wikipedia-visualization">
-      <h3>Wikipedia Visualization</h3>
-      <p class="muted">A live 3D force-directed graph of Wikipedia topics, built in grad school.</p>
-    </a>
-    <a class="card" href="/projects/us-map">
-      <h3>Interactive US Map</h3>
-      <p class="muted">A TopoJSON/D3 map of US states with click-to-highlight and labeled popouts.</p>
-    </a>
+    {vintage.map((p) => (
+      <a class="card" href={p.href}>
+        <h3>{p.title}</h3>
+        <p class="muted">{p.description}</p>
+      </a>
+    ))}
+  </div>
+
+  <hr />
+
+  <span class="eyebrow">My projects</span>
+  <h2>So I had Claude build my digital environment</h2>
+  <p class="muted">
+    These are the tools. Claude built them, I use them, and each one has its own page below.
+  </p>
+
+  <div class="card-grid">
+    {tools.map((p) => (
+      <a class="card" href={p.href} target={p.external ? "_blank" : undefined} rel={p.external ? "noreferrer" : undefined}>
+        <h3>{p.title}{p.external ? " ↗" : ""}</h3>
+        <p class="muted">{p.description}</p>
+      </a>
+    ))}
   </div>
 </Layout>

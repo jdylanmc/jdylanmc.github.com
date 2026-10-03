@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../layouts/Layout.astro";
 
 const dotfiles = {
   href: "/projects/dotfiles",
@@ -9,7 +9,7 @@ const dotfiles = {
     "The whole environment, explained chunk by chunk: what's linked into $HOME, why it's structured that way, and how identities route.",
 };
 
-const projects = [
+const builtOnTop = [
   {
     href: "/projects/cmux-maestro",
     title: "CMUX Maestro",
@@ -31,42 +31,32 @@ const projects = [
     description:
       "Adversarial pull request review from prompt-defined agent lenses — six reviewer personas, bounded read-only tools, one canonical report.",
   },
-  {
-    href: "https://jdylanmc.github.io/topo-code/",
-    title: "Topocode",
-    tags: ["Node.js", "Diagrams"],
-    description: "Generates living architecture diagrams directly from a repository's real structure.",
-    external: true,
-  },
 ];
 
-const vintage = [
+const forkedAndAdapted = [
   {
-    href: "/projects/particle-engine",
-    title: "JS Particle Engine",
-    tags: ["WebGL", "GLSL", "2011"],
-    description: "A hand-rolled WebGL particle system from an MTSU game engine architecture course.",
+    href: "https://github.com/jdylanmc/notch",
+    title: "Notch",
+    tags: ["Swift", "macOS", "Fork"],
+    description: "Forked an upstream app and hacked it into my own thing.",
+    external: true,
   },
   {
-    href: "/projects/wikipedia-visualization",
-    title: "Wikipedia Visualization",
-    tags: ["Three.js", "Wikipedia API", "2011"],
-    description: "A live 3D force-directed graph of Wikipedia topics, built in grad school.",
-  },
-  {
-    href: "/projects/us-map",
-    title: "Interactive US Map",
-    tags: ["D3.js", "TopoJSON", "CodePen"],
-    description: "A labeled, click-to-highlight map of US states, with popped-out small states.",
+    href: "https://github.com/jdylanmc/agent-skills",
+    title: "Agent Skills",
+    tags: ["Markdown", "Process"],
+    description: "How I actually think about software development now.",
+    external: true,
   },
 ];
 ---
 
-<Layout title="Projects — Dylan McCurry">
-  <span class="eyebrow">Projects</span>
-  <h1>My environment</h1>
+<Layout title="Environment — Dylan McCurry">
+  <span class="eyebrow">Environment</span>
+  <h1>This is what I actually run</h1>
   <p class="muted">
-    What I actually run day to day. Not demos.
+    Dotfiles, cacophony, maestro, PR sniper, notch, skills — it's all my agentic repos and
+    agentic environment.
   </p>
 
   <span class="eyebrow">The foundation</span>
@@ -87,9 +77,9 @@ const vintage = [
 
   <h2>Built on top of it</h2>
   <div class="card-grid">
-    {projects.map((p) => (
-      <a class="card" href={p.href} target={p.external ? "_blank" : undefined} rel={p.external ? "noreferrer" : undefined}>
-        <h3>{p.title}{p.external ? " ↗" : ""}</h3>
+    {builtOnTop.map((p) => (
+      <a class="card" href={p.href}>
+        <h3>{p.title}</h3>
         <p class="muted">{p.description}</p>
         <div>
           {p.tags.map((t) => (
@@ -102,14 +92,11 @@ const vintage = [
 
   <hr />
 
-  <span class="eyebrow">Look what I built, long before AI was a thing</span>
-  <h2>The archive</h2>
-  <p class="muted">Three live demos from MTSU, circa 2011 — restored to actually run, embedded below.</p>
-
+  <h2>Forked and adapted</h2>
   <div class="card-grid">
-    {vintage.map((p) => (
-      <a class="card" href={p.href}>
-        <h3>{p.title}</h3>
+    {forkedAndAdapted.map((p) => (
+      <a class="card" href={p.href} target="_blank" rel="noreferrer">
+        <h3>{p.title} ↗</h3>
         <p class="muted">{p.description}</p>
         <div>
           {p.tags.map((t) => (
