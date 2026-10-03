@@ -1,7 +1,70 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
+// Newest first.
 const timeline = [
+  {
+    period: "2024 – now",
+    org: "Xbox",
+    role: "Player Experiences (XPE)",
+    bullets: ["Focused on player-facing experiences across the native Xbox clients."],
+  },
+  {
+    period: "2022 – 2024",
+    org: "Xbox",
+    role: "Developer Experiences",
+    bullets: [
+      "Built and owned secure documentation portals.",
+      "Built and owned developer coordination forums.",
+      "Built the Microsoft Game Dev public-facing marketing site (Adobe Experience Manager).",
+    ],
+  },
+  {
+    period: "2020 – 2022",
+    org: "Perficient",
+    role: "Senior Solutions Architect",
+    bullets: [
+      "International Fresh Produce Association — an Optimizely CMS experience personalized via Salesforce Marketing Cloud, discovery through DXP delivery.",
+      "HomeInstead Senior Care — architected a multi-site Optimizely platform: 6 primary sites, hundreds of franchise micro-sites, 20,000+ pages, integrated with Dynamics CRM and Azure AD.",
+      "Publix and Central Garden & Pet projects.",
+      "Architected Perficient's Optimizely CMS accelerator, including an HTML5 focal-point image cropping extension.",
+    ],
+  },
+  {
+    period: "2015 – 2020",
+    org: "Brainjocks",
+    role: "Senior Technical Consultant",
+    bullets: [
+      "Procter & Gamble — enterprise Sitecore component framework for the Global Brand Solutions team, powering 100+ web properties (Swiffer.com, Old Spice, PGConsumer.com, and more).",
+      "Lakewood Church (Joel Osteen Ministries) — led lakewoodchurch.com (Sitecore + Dynamics eCommerce) and the companion Android/iOS app (Xamarin, headless Sitecore).",
+      "Sage — built a sitewide analytics data layer (Tealium + Google Analytics) tracking the full customer journey on sage.com.",
+      "Allegis Group — consulting architect for a shared component framework across aerotek.com, easi.com, allegisgroup.com, populusgroup.com, and more.",
+      "Iron Mountain — led the team re-designing ironmountain.com, a multi-lingual Sitecore site spanning 1,000+ pages across 50 countries.",
+      "Honeywell — architected an Adobe DAM / Sitecore CMS integration.",
+      "Blue Yonder — led a Sitecore implementation integrating Coveo and Marketo, spanning multiple languages and thousands of pages.",
+      "Central Garden & Pet projects.",
+      "Acquired by Perficient, March 2020 — same role, more clients.",
+    ],
+  },
+  {
+    period: "2011 – 2015",
+    org: "HCA Healthcare",
+    role: "Senior Application Engineer",
+    bullets: [
+      "Automated a manual 5-day financial member report process into a 2-minute utility app.",
+      "PASS (Provisioning and Security System) — security portal and API for single sign-on, role/profile management, and request workflows; became the Identity Provider for all HealthTrust systems.",
+      "SolutionsTrust Customer Portal — public and private content with single sign-on and custom security rules.",
+      "HealthTrust Medical Catalog — prototyped a catalog of 1M+ products, replacing a legacy app over 15 years old.",
+      "HealthTrust Customer Portal — multi-tenant Sitecore implementation serving as the entry point for customers, vendors, and employees.",
+      "CoreTrust Customer Portal — B2B Sitecore site built with a 3rd-party vendor.",
+    ],
+  },
+  {
+    period: "2009 – 2010",
+    org: "TRX Alliance (Tax Refund Express)",
+    role: "IT & Web",
+    bullets: ["Small local tax-prep company. Managed critical IT infrastructure and a basic company website."],
+  },
   {
     period: "2006 – 2011",
     org: "MTSU",
@@ -15,86 +78,129 @@ const timeline = [
       { href: "/projects/wikipedia-visualization", label: "Wikipedia Visualization" },
     ],
   },
-  {
-    period: "2009 – 2010",
-    org: "TRX Alliance (Tax Refund Express)",
-    role: "IT & Web",
-    bullets: ["Small local tax-prep company. Managed critical IT infrastructure and a basic company website."],
-  },
-  {
-    period: "2010 – 2015",
-    org: "HCA Healthcare",
-    role: "Software Engineer",
-    bullets: [
-      "Financial member reports (2010) — automated a manual 5-day report-generation process into a 2-minute utility app.",
-      "HealthTrust member portal — secure site for hospital partners to visualize spend trends across the HCA supply chain.",
-      "CoreTrust member portal — built a common Sitecore runtime shared across multiple internal line-of-business sites.",
-      "PASS (Provisioning and Security System) — self-service utility for requesting roles and permissions, with delegated permission management across complex healthcare software.",
-    ],
-  },
-  {
-    period: "2015 – 2020",
-    org: "Brainjocks",
-    role: "Consulting CMS Engineer",
-    bullets: [
-      "Procter & Gamble's enterprise Sitecore platform — shared components powering Swiffer.com, OldSpice.com, PGConsumer.com, and more.",
-      "Honeywell projects.",
-      "Central Garden & Pet projects.",
-      "Led the IronMountain.com implementation.",
-      "Consulting architect for Allegis Group — a shared enterprise layer across Aerotek.com, EASi.com, AllegisGroup.com, and more.",
-      "Joel Osteen Ministries websites.",
-      "Led implementation and discovery for BlueYonder.com.",
-      "Acquired by Perficient in 2020 — same role, more clients.",
-    ],
-  },
-  {
-    period: "2020 – 2022",
-    org: "Perficient",
-    role: "Consulting CMS Engineer",
-    bullets: ["Continued the Brainjocks work post-acquisition. Added Publix.com and HomeInstead.com to the client list."],
-  },
-  {
-    period: "2022 – 2024",
-    org: "Xbox",
-    role: "Developer Experiences",
-    bullets: [
-      "Built and owned secure documentation portals.",
-      "Built and owned developer coordination forums.",
-      "Built the Microsoft Game Dev public-facing marketing site (Adobe Experience Manager).",
-    ],
-  },
-  {
-    period: "2024 – now",
-    org: "Xbox",
-    role: "Player Experiences (XPE)",
-    bullets: ["Focused on player-facing experiences across the native Xbox clients."],
-  },
 ];
 ---
 
 <Layout title="Projects — Dylan McCurry">
   <span class="eyebrow">Projects</span>
-  <h1>2010 to now</h1>
-  <p class="muted">A timeline of what I've actually worked on, in order.</p>
+  <h1>Now, working backward</h1>
+  <p class="muted">A timeline of what I've actually worked on, most recent first.</p>
 
-  <div style="margin: 2.5rem 0;">
-    {timeline.map((job) => (
-      <div class="chunk">
-        <span class="tag">{job.period}</span>
-        <h3>{job.role} · {job.org}</h3>
-        <ul class="muted" style="margin: 0.5rem 0 0 1.1rem; padding: 0;">
-          {job.bullets.map((b) => (
-            <li style="margin-bottom: 0.4rem;">{b}</li>
-          ))}
-        </ul>
-        {job.links && (
-          <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            {job.links.map((l) => (
-              <a class="btn btn--ghost" href={l.href}>{l.label}</a>
+  <div class="timeline">
+    {timeline.map((job, i) => (
+      <div class={`timeline-item ${i % 2 === 0 ? "timeline-item--left" : "timeline-item--right"}`}>
+        <div class="timeline-dot"></div>
+        <div class="chunk timeline-card">
+          <span class="tag">{job.period}</span>
+          <h3>{job.role} · {job.org}</h3>
+          <ul class="muted">
+            {job.bullets.map((b) => (
+              <li>{b}</li>
             ))}
-          </div>
-        )}
+          </ul>
+          {job.links && (
+            <div class="timeline-links">
+              {job.links.map((l) => (
+                <a class="btn btn--ghost" href={l.href}>{l.label}</a>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     ))}
   </div>
 </Layout>
+
+<style>
+  .timeline {
+    position: relative;
+    margin: 3rem 0;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    position: relative;
+    width: 50%;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-item--left {
+    left: 0;
+    padding-right: 2.5rem;
+  }
+
+  .timeline-item--right {
+    left: 50%;
+    padding-left: 2.5rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    top: 0.35rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--border);
+  }
+
+  .timeline-item--left .timeline-dot {
+    right: -8px;
+  }
+
+  .timeline-item--right .timeline-dot {
+    left: -8px;
+  }
+
+  .timeline-card {
+    margin: 0;
+  }
+
+  .timeline-card ul {
+    margin: 0.5rem 0 0 1.1rem;
+    padding: 0;
+  }
+
+  .timeline-card li {
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-links {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 720px) {
+    .timeline::before {
+      left: 7px;
+    }
+
+    .timeline-item,
+    .timeline-item--left,
+    .timeline-item--right {
+      width: 100%;
+      left: 0;
+      padding-left: 2rem;
+      padding-right: 0;
+    }
+
+    .timeline-item--left .timeline-dot,
+    .timeline-item--right .timeline-dot {
+      left: 0;
+      right: auto;
+    }
+  }
+</style>
