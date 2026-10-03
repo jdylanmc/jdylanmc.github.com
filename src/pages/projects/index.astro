@@ -241,7 +241,7 @@ const timeline = [
             <span class="timeline-year">{item.year}</span>
           </div>
         ) : (
-          <div class="chunk timeline-card">
+          <div class={`chunk timeline-card ${item.year === "Now" ? "timeline-now" : ""}`}>
             <div class="timeline-labels">
               <span class="tag">{item.org}</span>
               <span class="tag">{item.role}</span>
@@ -345,6 +345,12 @@ const timeline = [
 
   .timeline-milestone h3 {
     color: var(--accent);
+  }
+
+  .timeline-now {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, var(--bg));
+    box-shadow: 0 0 0 1px var(--accent);
   }
 
   .timeline-year {
