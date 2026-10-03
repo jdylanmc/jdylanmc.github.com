@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const timeline = [
+  {
+    period: "2006 – 2011",
+    org: "MTSU",
+    role: "Computer Science",
+    bullets: [
+      "Studied computer science at Middle Tennessee State University (MTSU).",
+      "Summer work-study: built virtual worlds in Second Life to programmatically deliver real-world social worker training and onboarding.",
+    ],
+    links: [
+      { href: "/projects/particle-engine", label: "JS Particle Engine" },
+      { href: "/projects/wikipedia-visualization", label: "Wikipedia Visualization" },
+    ],
+  },
+  {
+    period: "2009 – 2010",
+    org: "TRX Alliance (Tax Refund Express)",
+    role: "IT & Web",
+    bullets: ["Small local tax-prep company. Managed critical IT infrastructure and a basic company website."],
+  },
+  {
+    period: "2010 – 2015",
+    org: "HCA Healthcare",
+    role: "Software Engineer",
+    bullets: [
+      "Financial member reports (2010) — automated a manual 5-day report-generation process into a 2-minute utility app.",
+      "HealthTrust member portal — secure site for hospital partners to visualize spend trends across the HCA supply chain.",
+      "CoreTrust member portal — built a common Sitecore runtime shared across multiple internal line-of-business sites.",
+      "PASS (Provisioning and Security System) — self-service utility for requesting roles and permissions, with delegated permission management across complex healthcare software.",
+    ],
+  },
+  {
+    period: "2015 – 2020",
+    org: "Brainjocks",
+    role: "Consulting CMS Engineer",
+    bullets: [
+      "Procter & Gamble's enterprise Sitecore platform — shared components powering Swiffer.com, OldSpice.com, PGConsumer.com, and more.",
+      "Honeywell projects.",
+      "Central Garden & Pet projects.",
+      "Led the IronMountain.com implementation.",
+      "Consulting architect for Allegis Group — a shared enterprise layer across Aerotek.com, EASi.com, AllegisGroup.com, and more.",
+      "Joel Osteen Ministries websites.",
+      "Led implementation and discovery for BlueYonder.com.",
+      "Acquired by Perficient in 2020 — same role, more clients.",
+    ],
+  },
+  {
+    period: "2020 – 2022",
+    org: "Perficient",
+    role: "Consulting CMS Engineer",
+    bullets: ["Continued the Brainjocks work post-acquisition. Added Publix.com and HomeInstead.com to the client list."],
+  },
+  {
+    period: "2022 – 2024",
+    org: "Xbox",
+    role: "Developer Experiences",
+    bullets: [
+      "Built and owned secure documentation portals.",
+      "Built and owned developer coordination forums.",
+      "Built the Microsoft Game Dev public-facing marketing site (Adobe Experience Manager).",
+    ],
+  },
+  {
+    period: "2024 – now",
+    org: "Xbox",
+    role: "Player Experiences (XPE)",
+    bullets: ["Focused on player-facing experiences across the native Xbox clients."],
+  },
+];
+---
+
+<Layout title="Projects — Dylan McCurry">
+  <span class="eyebrow">Projects</span>
+  <h1>2010 to now</h1>
+  <p class="muted">A timeline of what I've actually worked on, in order.</p>
+
+  <div style="margin: 2.5rem 0;">
+    {timeline.map((job) => (
+      <div class="chunk">
+        <span class="tag">{job.period}</span>
+        <h3>{job.role} · {job.org}</h3>
+        <ul class="muted" style="margin: 0.5rem 0 0 1.1rem; padding: 0;">
+          {job.bullets.map((b) => (
+            <li style="margin-bottom: 0.4rem;">{b}</li>
+          ))}
+        </ul>
+        {job.links && (
+          <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            {job.links.map((l) => (
+              <a class="btn btn--ghost" href={l.href}>{l.label}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</Layout>
