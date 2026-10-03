@@ -181,6 +181,7 @@ main {
   font-weight: 600;
   font-size: 0.9rem;
   border: var(--border-width) solid var(--accent);
+  margin-bottom: 1.5rem;
 }
 
 .btn:hover {
