@@ -1,0 +1,82 @@
+/* Hand-scoped version of the inline <style> block from the original 2011
+   index.html, rewritten under .wv-embed so it can't leak onto the rest of the
+   site, and using the site's theme CSS variables instead of hardcoded colors
+   so the stage matches whichever of the 12 themes is active. The original
+   assumed a fullscreen <body>; here .wv-embed is a fixed-height container that
+   establishes its own positioning context for #options and the canvas. */
+.wv-embed {
+	position: relative;
+	overflow: hidden;
+	background-color: var(--bg-elevated);
+	color: var(--text);
+	font: 11px courier, monospace;
+	height: 620px;
+	border: var(--border-width) solid var(--border);
+}
+
+.wv-embed canvas {
+	display: block;
+}
+
+.wv-embed #graph-info {
+	padding-left: 10px;
+}
+
+.wv-embed #options {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 10;
+	width: 250px;
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+.wv-embed .box-outter {
+	border-left: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+	margin: 10px;
+	background: var(--bg);
+}
+
+.wv-embed .box-inner {
+	padding-left: 5px;
+	padding-bottom: 5px;
+	padding-top: 2px;
+}
+
+.wv-embed .box-inner h3 {
+	margin: 0.5em 0;
+	font: inherit;
+	font-weight: bold;
+}
+
+.wv-embed .box-inner p {
+	margin: 0.5em 0;
+}
+
+.wv-embed .box-inner table {
+	font: inherit;
+	color: inherit;
+}
+
+.wv-embed .box-inner a {
+	color: var(--accent, inherit);
+}
+
+.wv-embed .control-button {
+	width: 80px;
+	font: inherit;
+}
+
+.wv-embed input[type="text"] {
+	font: inherit;
+	background: var(--bg-elevated);
+	color: var(--text);
+	border: var(--border-width) solid var(--border);
+}
+
+.wv-embed input[type="button"] {
+	font: inherit;
+	cursor: pointer;
+}

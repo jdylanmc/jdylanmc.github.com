@@ -1,0 +1,108 @@
+/* Auto-generated: selectors scoped under .pe-embed for direct-embed use. See public/demos for originals. */
+.pe-embed {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	padding: 50px;
+	display: block;
+	position: relative;
+	overflow: auto;
+}
+.pe-embed #controls-top-corner {
+	position: absolute;
+	margin-top: 10px;
+	z-index: 1;
+}
+.pe-embed #face-toggle-container {
+	position: absolute;
+	z-index: 1;
+}
+.pe-embed #color-picker-controls {
+	position: absolute; 
+	z-index: 1;
+}
+.pe-embed #controls-face-container {
+	position: absolute;
+	margin-top: 535px;
+	margin-left: 10px;
+	z-index: 1;
+	width: auto;
+}
+.pe-embed #controls-face-container label {
+	width: 60px;
+}
+.pe-embed #color-picker {
+	float: left;
+}
+.pe-embed #controls-bot-row {
+	position: absolute; 
+	margin-top: 680px; 
+	z-index: 1;
+}
+.pe-embed #red,
+.pe-embed #green,
+.pe-embed #blue {
+	float: left;
+	clear: left;
+	width: 120px;
+	margin: 8px;
+	margin-left: 15px;
+}
+.pe-embed #swatch {
+	width: 139px;
+	height: 75px;
+	margin-left: 5px;
+	margin-bottom: 110px;
+	background-image: none;
+}
+.pe-embed #red .ui-slider-range { background: #ef2929; }
+.pe-embed #red .ui-slider-handle { border-color: #ef2929; }
+.pe-embed #green .ui-slider-range { background: #8ae234; }
+.pe-embed #green .ui-slider-handle { border-color: #8ae234; }
+.pe-embed #blue .ui-slider-range { background: #729fcf; }
+.pe-embed #blue .ui-slider-handle { border-color: #729fcf; }
+.pe-embed #forceSlider .ui-slider-handle { background: #999; }
+.pe-embed #forceSlider .ui-slider-range {background: #666; }
+.pe-embed #speedSlider .ui-slider-handle { background: #999; }
+.pe-embed #speedSlider .ui-slider-range { background: #666; }
+.pe-embed #refreshSlider .ui-slider-handle { background: #999; }
+.pe-embed #refreshSlider .ui-slider-range { background: #666; }
+.pe-embed #angleSlider .ui-slider-handle { background: #999; }
+.pe-embed #angleSlider .ui-slider-range {background: #666; }
+.pe-embed #spawnSlider .ui-slider-handle { background: #999; }
+.pe-embed #spawnSlider .ui-slider-range {background: #666; }
+.pe-embed #sizeSlider .ui-slider-handle { background: #999; }
+.pe-embed #sizeSlider .ui-slider-range {background: #666; }
+.pe-embed #lifetimeSlider .ui-slider-handle { background: #999; }
+.pe-embed #lifetimeSlider .ui-slider-range {background: #666; }
+.pe-embed .ui-labels {
+	margin: 5px 0px 5px 5px;
+	padding: 5px 14px 8px 14px;
+	font-size: 150%;
+	background: #BBB;
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border: 0px solid #000000;
+	text-align: center;
+	height: 65px;
+	width: 112px;
+}
+.pe-embed #controls-top-corner {
+	float: right;
+	margin-left: 10px;
+	padding: 5px;
+	font-size: 100%;
+}
+.pe-embed .independent-control {
+	position: absolute;
+	z-index: 1;
+}
+.pe-embed #billboard-radio-container {
+	font-size: 70%;
+}
+.pe-embed fieldset { border:0; font-size: 70%; padding-top: 15px; }
+.pe-embed select { width: 150px; }
+.pe-embed #canvas-div {
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+}

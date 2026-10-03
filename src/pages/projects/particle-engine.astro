@@ -20,33 +20,183 @@ import Layout from "../../layouts/Layout.astro";
   <h2>Live demo</h2>
   <p class="muted">
     Drag the sliders to control force, angle, spawn rate, speed, and lifetime. Pick a texture from
-    the dropdown to swap the particle sprite.
+    the dropdown to swap the particle sprite. Rendered directly on this page — no iframe.
   </p>
-  <div class="demo-frame">
-    <iframe
-      src="/demos/particle-engine/index.html"
-      title="JS Particle Engine demo"
-      loading="lazy"
-      width="1024"
-      height="768"
-    ></iframe>
+
+  <!-- Scoped vendor CSS for the 2011 jQuery UI controls. Selectors are rewritten under
+       .pe-embed so they can't leak onto the rest of the site (generated from the original
+       CSS in ../css/smoothness and ../css/style.css). -->
+  <link rel="stylesheet" href="/demos/particle-engine/css/embed/jquery-ui-scoped.css" />
+  <link rel="stylesheet" href="/demos/particle-engine/css/embed/selectmenu-scoped.css" />
+  <link rel="stylesheet" href="/demos/particle-engine/css/embed/style-scoped.css" />
+
+  <div class="pe-embed" id="pe-embed">
+    <div id="canvas-div">
+      <div id="title">Canvas Stuff by Dylan McCurry</div>
+      <br />
+
+      <canvas id="webgl" width="1024" height="768" style="position: absolute"></canvas>
+
+      <div id="controls-top-corner">
+        <div id="background-toggle">
+          <input type="radio" id="background-white" name="background-radio" /><label for="background-white">White</label>
+          <input type="radio" id="background-black" name="background-radio" /><label for="background-black">Black</label>
+        </div>
+      </div>
+
+      <div class="independent-control" style="margin-top: 440px;">
+        <div id="color-picker">
+          <div id="red"></div>
+          <div id="green"></div>
+          <div id="blue"></div>
+          <div id="swatch" class="ui-widget-content ui-corner-all"></div>
+        </div>
+      </div>
+
+      <div class="independent-control" style="margin-top: 516px">
+        <div id="textureSelector" style="float: left; padding-left: 0px; width: 126px;" class="ui-labels">
+          Texture:
+          <fieldset>
+            <select name="texture" id="texture" style="width: 110px;">
+              <option value="None" selected="selected">None</option>
+              <option value="/demos/particle-engine/images/alpha.png">Alpha</option>
+              <option value="/demos/particle-engine/images/aura.png">Aura</option>
+              <option value="/demos/particle-engine/images/beta.png">Beta</option>
+              <option value="/demos/particle-engine/images/bubble.png">Bubble</option>
+              <option value="/demos/particle-engine/images/delta.png">Delta</option>
+              <option value="/demos/particle-engine/images/gamma.png">Gamma</option>
+              <option value="/demos/particle-engine/images/light.png">Light</option>
+              <option value="/demos/particle-engine/images/nova.png">Nova</option>
+              <option value="/demos/particle-engine/images/omega.png">Omega</option>
+              <option value="/demos/particle-engine/images/pollen.png">Pollen</option>
+              <option value="/demos/particle-engine/images/ring.png">Ring</option>
+              <option value="/demos/particle-engine/images/star.png">Star</option>
+              <option value="/demos/particle-engine/images/sun.png">Sun</option>
+              <option value="/demos/particle-engine/images/tau.png">Tau</option>
+            </select>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="independent-control" style="margin-top: 598px">
+        <div id="Billboard" style="float: left" class="ui-labels">
+          Billboard
+          <br />
+          <br />
+          <div id="billboard-radio-container">
+            <input type="radio" id="billboard-yes" name="billboard-radio" checked="checked" /><label for="billboard-yes">yes</label>
+            <input type="radio" id="billboard-no" name="billboard-radio" /><label for="billboard-no">no</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="controls-bot-row">
+        <div style="float: left" class="ui-labels">
+          Force
+          <br />
+          <label id="forceLabel">#</label>
+          <div id="forceSlider" style="margin-top: 5px; width: 110px;"></div>
+        </div>
+
+        <div id="angle" style="float: left" class="ui-labels">
+          Particle Angle
+          <br />
+          <label id="angleLabel">#</label>
+          <div id="angleSlider" style="margin-top: 5px; width: 110px;"></div>
+        </div>
+
+        <div style="float: left" class="ui-labels">
+          Spawn Rate
+          <br />
+          <label id="spawnLabel">#</label>
+          <div id="spawnSlider" style="margin-top: 5px; width: 110px;"></div>
+        </div>
+
+        <div id="speed" style="float: left" class="ui-labels">
+          Speed
+          <br />
+          <label id="speedLabel">#</label>
+          <div id="speedSlider" style="margin-top: 5px; width: 110px;"></div>
+        </div>
+
+        <div style="float: left;" class="ui-labels">
+          Refresh Interval
+          <br />
+          <label id="refreshLabel">#</label>
+          <div id="refreshSlider" style="margin-top: 5px; width: 110px;"></div>
+        </div>
+
+        <div style="float: left;" class="ui-labels">
+          Size
+          <br />
+          <label id="sizeLabel">#</label>
+          <div id="sizeSlider" style="margin-top: 5px; width: 110px;"></div>
+        </div>
+
+        <div style="float: left;" class="ui-labels">
+          Lifetime
+          <br />
+          <label id="lifetimeLabel">#</label>
+          <div id="lifetimeSlider" style="margin-top: 5px; width: 110px;"></div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- required by UI -->
+  <script is:inline src="/demos/particle-engine/scripts/jquery-1.7.2.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/ui/jquery.ui.core.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/ui/jquery.ui.widget.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/ui/jquery.ui.mouse.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/ui/jquery.ui.slider.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/ui/jquery.ui.button.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/ui/jquery.ui.position.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/ui/jquery.ui.selectmenu.js"></script>
+
+  <!-- application specific ui logic -->
+  <script is:inline src="/demos/particle-engine/scripts/ui.js"></script>
+
+  <script is:inline src="/demos/particle-engine/scripts/google-webgl-utils.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/glMatrix-0.9.5.min.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/shaders.js"></script>
+  <script is:inline src="/demos/particle-engine/scripts/webgl.js"></script>
+  <script is:inline>
+    // jquery.ui.selectmenu defaults to appendTo:"body" for its popup menu, which escapes
+    // our .pe-embed scoping container so the scoped CSS (incl. the display:none that hides
+    // it until opened) never matches. ui.js creates it asynchronously (its $(function(){...})
+    // ready handler is queued via setTimeout since the DOM is already "complete" by the time
+    // these late <script> tags run), so watch for it and re-home it as soon as it shows up.
+    var peEmbed = document.getElementById("pe-embed");
+    var relocate = function () {
+      document.querySelectorAll(".ui-selectmenu-menu").forEach(function (el) {
+        if (el.parentElement !== peEmbed) peEmbed.appendChild(el);
+      });
+    };
+    relocate();
+    new MutationObserver(relocate).observe(document.body, { childList: true });
+
+    // Original demo called this from <body onload="RunWebGL()">. We don't own <body> here,
+    // so kick it off once this script runs (it's placed after markup + all deps, same as original).
+    RunWebGL();
+  </script>
 
   <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
 </Layout>
 
 <style>
-  .demo-frame {
-    margin: 1.5rem 0 2.5rem;
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--radius);
-    overflow: auto;
-    background: #fff;
+  /* The 2011 demo's controls are all position:absolute with no `top`, relying on their
+     "hypothetical static position" + margin-top for placement (standard CSS behavior,
+     not a bug). Its original page worked because body had nothing after the demo and
+     browsers extend the scrollable area to fit overflowing absolute content. Here, this
+     page has real content (the back link, footer) after the embed, which would otherwise
+     paint on top of the now out-of-flow canvas/controls unless we give the wrapper real
+     height to push that later content down below the whole demo. */
+  .pe-embed {
+    position: relative;
+    min-height: 900px;
   }
 
-  .demo-frame iframe {
-    display: block;
-    border: 0;
-    max-width: 100%;
+  .pe-embed #canvas-div {
+    min-height: 900px;
   }
 </style>

@@ -1,0 +1,28 @@
+/* Auto-generated: selectors scoped under .pe-embed for direct-embed use. See public/demos for originals. */
+.pe-embed .ui-selectmenu { display: block; display: inline-block; position: relative; height: 2.2em; vertical-align: middle; text-decoration: none; overflow: hidden; zoom: 1; }
+.pe-embed .ui-selectmenu-icon { position:absolute; right:6px; margin-top:-8px; top: 50%; }
+.pe-embed .ui-selectmenu-menu { padding:0; margin:0; position:absolute; top: 0; display: none; z-index: 1005;}
+.pe-embed .ui-selectmenu-menu  ul { padding:0; margin:0; list-style:none; position: relative; overflow: auto; overflow-y: auto ; overflow-x: hidden; -webkit-overflow-scrolling: touch;}
+.pe-embed .ui-selectmenu-open { display: block; }
+.pe-embed .ui-selectmenu-menu-popup { margin-top: -1px; }
+.pe-embed .ui-selectmenu-menu li { padding:0; margin:0; display: block; border-top: 1px dotted transparent; border-bottom: 1px dotted transparent; border-right-width: 0 !important; border-left-width: 0 !important; font-weight: normal !important; }
+.pe-embed .ui-selectmenu-menu li a,
+.pe-embed .ui-selectmenu-status { line-height: 1.4em; display: block; padding: .405em 2.1em .405em 1em; outline:none; text-decoration:none; }
+.pe-embed .ui-selectmenu-menu li.ui-state-disabled a,
+.pe-embed .ui-state-disabled { cursor: default; }
+.pe-embed .ui-selectmenu-menu li.ui-selectmenu-hasIcon a,
+.pe-embed .ui-selectmenu-hasIcon .ui-selectmenu-status { padding-left: 20px; position: relative; margin-left: 5px; }
+.pe-embed .ui-selectmenu-menu li .ui-icon,
+.pe-embed .ui-selectmenu-status .ui-icon { position: absolute; top: 1em; margin-top: -8px; left: 0; }
+.pe-embed .ui-selectmenu-status { line-height: 1.4em; }
+.pe-embed .ui-selectmenu-menu li span,
+.pe-embed .ui-selectmenu-status span { display:block; margin-bottom: .2em; }
+.pe-embed .ui-selectmenu-menu li .ui-selectmenu-item-header { font-weight: bold; }
+.pe-embed .ui-selectmenu-menu li .ui-selectmenu-item-footer { opacity: .8; }
+.pe-embed .ui-selectmenu-menu .ui-selectmenu-group { font-size: 1em; }
+.pe-embed .ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label { line-height: 1.4em; display:block; padding: .6em .5em 0; font-weight: bold; }
+.pe-embed .ui-selectmenu-menu .ui-selectmenu-group ul { margin: 0; padding: 0; }
+.pe-embed * html .ui-selectmenu-menu li { border-color: pink; filter:chroma(color=pink); width:100%; }
+.pe-embed * html .ui-selectmenu-menu li a { position: relative }
+.pe-embed *+html .ui-state-disabled,
+.pe-embed *+html .ui-state-disabled a { color: silver; }

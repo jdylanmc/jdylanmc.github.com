@@ -28,8 +28,12 @@ THREE.ObjectSelection = function(parameters) {
 
 	this.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
 	function onDocumentMouseMove( event ) {
-		mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+		// Originally used window.innerWidth/innerHeight, which assumed the canvas filled the
+		// whole viewport. Use the canvas's own box so raycasting still works when embedded in
+		// a sized container smaller than the page.
+		var rect = _this.domElement.getBoundingClientRect();
+		mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+		mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
 	}
 
 	this.domElement.addEventListener( 'click', onDocumentMouseClick, false );

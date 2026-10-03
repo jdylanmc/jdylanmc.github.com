@@ -11,6 +11,7 @@ var known_ids = [];
 
 function createDrawing() {
 	drawing = new Drawing.SimpleGraph({
+										container: document.getElementById('wv-stage'),
 										layout: '3d', 
 										selection: true, 
 										numNodes: 0, 

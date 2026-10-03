@@ -41,13 +41,16 @@ Drawing.SimpleGraph = function(options) {
 
 	
 	function init() {
+		// Allow embedding in a sized container instead of assuming fullscreen/document.body.
+		that.container = options.container || document.body;
+
 		// Three.js initialization
 		renderer = new THREE.WebGLRenderer({antialias: true});
-		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.setSize( that.container.clientWidth, that.container.clientHeight );
 		
 		camera = new THREE.TrackballCamera({
 			fov: 40, 
-			aspect: window.innerWidth / window.innerHeight,
+			aspect: that.container.clientWidth / that.container.clientHeight,
 			near: 100,
 			far: 100000,
 
@@ -109,14 +112,14 @@ Drawing.SimpleGraph = function(options) {
 			});
 		}
 
-		document.body.appendChild( renderer.domElement );
+		that.container.appendChild( renderer.domElement );
 	
 		// Stats.js
 		if(that.show_stats) {
 			stats = new Stats();
 			stats.domElement.style.position = 'absolute';
 			stats.domElement.style.top = '0px';
-			document.body.appendChild( stats.domElement );
+			that.container.appendChild( stats.domElement );
 		}	
 	}
 	

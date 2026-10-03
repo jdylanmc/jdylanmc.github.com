@@ -14,7 +14,7 @@ var particle_size = 1.0; 		// between 0.01 and 1
 var particle_lifetime = 30.0; 	// between 1.0 and 40.0
 var billboard = false;
 var particle_enable_texture = false;
-var particle_texture = "images/star.png";
+var particle_texture = "/demos/particle-engine/images/star.png";
 
 // global shader object
 var program = {};

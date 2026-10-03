@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Interactive US Map — Dylan McCurry">
+  <span class="eyebrow">Look what I built, long before AI was a thing</span>
+  <h1>Interactive US Map</h1>
+  <p class="muted">
+    A labeled, clickable map of the United States built with D3 and TopoJSON — states render
+    from real geographic boundary data, with the tiny ones (DC, RI, the New England cluster)
+    popped out into readable tiles instead of overlapping. No framework, no AI, just a CodePen
+    and some geometry.
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">D3.js</span>
+    <span class="tag">TopoJSON</span>
+    <span class="tag">SVG</span>
+  </div>
+  <a class="btn" href="https://codepen.io/jdylanmc/pen/MWjPjdE" target="_blank" rel="noreferrer">View on CodePen ↗</a>
+
+  <h2>Live demo</h2>
+  <p class="muted">Click a state to toggle its highlight.</p>
+  <div class="demo-frame">
+    <iframe
+      src="https://codepen.io/jdylanmc/embed/MWjPjdE?default-tab=result"
+      title="Interactive US Map demo"
+      loading="lazy"
+      width="100%"
+      height="620"
+    ></iframe>
+  </div>
+
+  <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+</Layout>
+
+<style>
+  .demo-frame {
+    margin: 1.5rem 0 2.5rem;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-elevated);
+  }
+
+  .demo-frame iframe {
+    display: block;
+    border: 0;
+    width: 100%;
+  }
+</style>
