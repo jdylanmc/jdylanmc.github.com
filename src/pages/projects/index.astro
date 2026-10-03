@@ -81,7 +81,6 @@ const timeline = [
     desc: "BrainJocks became part of Perficient. Same work, new badge.",
   },
   {
-    period: "2015 – 2020",
     year: "~2019",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -89,7 +88,6 @@ const timeline = [
     desc: "Led a Sitecore implementation integrating Coveo and Marketo, spanning multiple languages and thousands of pages.",
   },
   {
-    period: "2015 – 2020",
     year: "~2018",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -97,7 +95,6 @@ const timeline = [
     desc: "Architected an Adobe DAM / Sitecore CMS integration.",
   },
   {
-    period: "2015 – 2020",
     year: "~2018",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -105,7 +102,6 @@ const timeline = [
     desc: "Led the team re-designing ironmountain.com, a multi-lingual Sitecore site spanning 1,000+ pages across 50 countries.",
   },
   {
-    period: "2015 – 2020",
     year: "~2017",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -113,7 +109,6 @@ const timeline = [
     desc: "Consulting architect for a shared component framework across aerotek.com, easi.com, allegisgroup.com, populusgroup.com, and more.",
   },
   {
-    period: "2015 – 2020",
     year: "~2017",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -121,7 +116,6 @@ const timeline = [
     desc: "Built a sitewide analytics data layer (Tealium + Google Analytics) tracking the full customer journey on sage.com.",
   },
   {
-    period: "2015 – 2020",
     year: "~2016",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -129,7 +123,6 @@ const timeline = [
     desc: "Led lakewoodchurch.com (Sitecore + Dynamics eCommerce) and the companion Android/iOS app (Xamarin, headless Sitecore).",
   },
   {
-    period: "2015 – 2020",
     year: "~2016",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -137,7 +130,6 @@ const timeline = [
     desc: "Enterprise Sitecore component framework for the Global Brand Solutions team, powering 100+ web properties (Swiffer.com, Old Spice, PGConsumer.com, and more).",
   },
   {
-    period: "2015 – 2020",
     year: "~2015",
     org: "BrainJocks",
     role: "Senior Software Engineer",
@@ -242,7 +234,7 @@ const timeline = [
               <span class="tag">{item.role}</span>
             </div>
             <h3>{item.thing}</h3>
-            <p class="muted timeline-period">{item.period}</p>
+            {item.period && <p class="muted timeline-period">{item.period}</p>}
             <p class="muted">{item.desc}</p>
             {item.links && (
               <div class="timeline-links">
