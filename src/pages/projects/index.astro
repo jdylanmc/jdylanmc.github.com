@@ -37,12 +37,10 @@ const timeline = [
     desc: "Built and owned internal, access-controlled documentation portals for Xbox developers.",
   },
   {
-    period: "2020 – 2022",
-    year: "~2020",
-    org: "Perficient",
-    role: "Senior Solutions Architect",
-    thing: "International Fresh Produce Association",
-    desc: "An Optimizely CMS experience personalized via Salesforce Marketing Cloud, discovery through DXP delivery.",
+    milestone: true,
+    year: "~2022",
+    thing: "Joined Xbox",
+    desc: "Moved from Perficient into Xbox Player Experiences (XPE).",
   },
   {
     period: "2020 – 2022",
@@ -54,7 +52,15 @@ const timeline = [
   },
   {
     period: "2020 – 2022",
-    year: "~2021",
+    year: "~2020",
+    org: "Perficient",
+    role: "Senior Solutions Architect",
+    thing: "International Fresh Produce Association",
+    desc: "An Optimizely CMS experience personalized via Salesforce Marketing Cloud, discovery through DXP delivery.",
+  },
+  {
+    period: "2020 – 2022",
+    year: "~2020",
     org: "Perficient",
     role: "Senior Solutions Architect",
     thing: "Publix.com",
@@ -62,11 +68,17 @@ const timeline = [
   },
   {
     period: "2020 – 2022",
-    year: "~2020",
+    year: "~2019",
     org: "Perficient",
     role: "Senior Solutions Architect",
     thing: "Optimizely CMS accelerator",
     desc: "Architected Perficient's Optimizely CMS accelerator, including an HTML5 focal-point image cropping extension.",
+  },
+  {
+    milestone: true,
+    year: "~2020",
+    thing: "Perficient acquires BrainJocks",
+    desc: "BrainJocks became part of Perficient. Same work, new badge.",
   },
   {
     period: "2015 – 2020",
@@ -182,7 +194,7 @@ const timeline = [
   },
   {
     period: "2006 – 2011",
-    year: "~2008",
+    year: "~2009",
     org: "MTSU",
     role: "Work-study",
     thing: "Second Life",
@@ -211,23 +223,31 @@ const timeline = [
     {timeline.map((item, i) => (
       <div class={`timeline-item ${i % 2 === 0 ? "timeline-item--left" : "timeline-item--right"}`}>
         <div class="timeline-dot"></div>
-        <div class="chunk timeline-card">
-          <div class="timeline-labels">
-            <span class="tag">{item.org}</span>
-            <span class="tag">{item.role}</span>
+        {item.milestone ? (
+          <div class="chunk timeline-card timeline-milestone">
+            <h3>{item.thing}</h3>
+            <p class="muted">{item.desc}</p>
+            <span class="timeline-year">{item.year}</span>
           </div>
-          <h3>{item.thing}</h3>
-          <p class="muted timeline-period">{item.period}</p>
-          <p class="muted">{item.desc}</p>
-          {item.links && (
-            <div class="timeline-links">
-              {item.links.map((l) => (
-                <a class="btn btn--ghost" href={l.href}>{l.label}</a>
-              ))}
+        ) : (
+          <div class="chunk timeline-card">
+            <div class="timeline-labels">
+              <span class="tag">{item.org}</span>
+              <span class="tag">{item.role}</span>
             </div>
-          )}
-          <span class="timeline-year">{item.year}</span>
-        </div>
+            <h3>{item.thing}</h3>
+            <p class="muted timeline-period">{item.period}</p>
+            <p class="muted">{item.desc}</p>
+            {item.links && (
+              <div class="timeline-links">
+                {item.links.map((l) => (
+                  <a class="btn btn--ghost" href={l.href}>{l.label}</a>
+                ))}
+              </div>
+            )}
+            <span class="timeline-year">{item.year}</span>
+          </div>
+        )}
       </div>
     ))}
   </div>
@@ -305,6 +325,15 @@ const timeline = [
     margin: 0;
     position: relative;
     padding-bottom: 1.75rem;
+  }
+
+  .timeline-milestone {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  }
+
+  .timeline-milestone h3 {
+    color: var(--accent);
   }
 
   .timeline-year {
