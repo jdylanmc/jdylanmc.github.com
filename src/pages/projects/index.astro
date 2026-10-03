@@ -1,0 +1,99 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const projects = [
+  {
+    href: "/projects/cmux-maestro",
+    title: "CMUX Maestro",
+    tags: ["Swift", "macOS", "ExtensionKit"],
+    description:
+      "The orchestration plugin for CMUX — a sidebar surface for multi-agent visibility, built as a sandboxed ExtensionKit boundary.",
+  },
+  {
+    href: "/projects/pr-sniper",
+    title: "PR Sniper",
+    tags: ["Tauri", "Rust", "TypeScript"],
+    description:
+      "A macOS menu-bar app for human-owned pull request review — a queue, assigned agent review, and a publication gate a human controls.",
+  },
+  {
+    href: "/projects/dotfiles",
+    title: "Dotfiles",
+    tags: ["Shell", "Zsh", "Git"],
+    description:
+      "The whole environment, explained chunk by chunk: what's linked into $HOME, why it's structured that way, and how identities route.",
+  },
+  {
+    href: "/projects/cacophony",
+    title: "Cacophony",
+    tags: ["GitHub Actions", "Azure AI Foundry"],
+    description:
+      "Adversarial pull request review from prompt-defined agent lenses — six reviewer personas, bounded read-only tools, one canonical report.",
+  },
+  {
+    href: "https://jdylanmc.github.io/topo-code/",
+    title: "Topocode",
+    tags: ["Node.js", "Diagrams"],
+    description: "Generates living architecture diagrams directly from a repository's real structure.",
+    external: true,
+  },
+];
+
+const vintage = [
+  {
+    href: "/projects/particle-engine",
+    title: "JS Particle Engine",
+    tags: ["WebGL", "GLSL", "2011"],
+    description: "A hand-rolled WebGL particle system from an MTSU game engine architecture course.",
+  },
+  {
+    href: "/projects/wikipedia-visualization",
+    title: "Wikipedia Visualization",
+    tags: ["Three.js", "Wikipedia API", "2011"],
+    description: "A live 3D force-directed graph of Wikipedia topics, built in grad school.",
+  },
+];
+---
+
+<Layout title="Projects — Dylan McCurry">
+  <span class="eyebrow">Projects</span>
+  <h1>My environment</h1>
+  <p class="muted">
+    The tooling I use to run an AI-assisted engineering practice — visibility, review discipline,
+    and a reproducible setup. Not demos; this is what I actually run day to day.
+  </p>
+
+  <div class="card-grid">
+    {projects.map((p) => (
+      <a class="card" href={p.href} target={p.external ? "_blank" : undefined} rel={p.external ? "noreferrer" : undefined}>
+        <h3>{p.title}{p.external ? " ↗" : ""}</h3>
+        <p class="muted">{p.description}</p>
+        <div>
+          {p.tags.map((t) => (
+            <span class="tag">{t}</span>
+          ))}
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <hr />
+
+  <span class="eyebrow">Look what I built, long before AI was a thing</span>
+  <h2>The archive</h2>
+  <p class="muted">Two live demos from MTSU, circa 2011 — restored to actually run, embedded below.</p>
+
+  <div class="card-grid">
+    {vintage.map((p) => (
+      <a class="card" href={p.href}>
+        <h3>{p.title}</h3>
+        <p class="muted">{p.description}</p>
+        <div>
+          {p.tags.map((t) => (
+            <span class="tag">{t}</span>
+          ))}
+        </div>
+      </a>
+    ))}
+  </div>
+</Layout>

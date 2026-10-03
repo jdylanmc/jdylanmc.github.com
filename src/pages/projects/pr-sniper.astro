@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="PR Sniper — Dylan McCurry">
+  <span class="eyebrow">Project</span>
+  <h1>PR Sniper</h1>
+  <p class="muted">
+    A macOS menu-bar application for human-owned pull request review. The whole thesis: an AI can
+    draft and even self-review code, but publishing a review is a human decision, gated on purpose.
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">Tauri 2</span>
+    <span class="tag">Rust</span>
+    <span class="tag">TypeScript</span>
+    <span class="tag">macOS</span>
+  </div>
+  <a class="btn" href="https://github.com/jdylanmc/pr-sniper" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+
+  <h2>How it works</h2>
+  <p>
+    Left-click the tray crosshair for one retained panel with <strong>Queue</strong>,
+    <strong>Running</strong>, <strong>Reviewed</strong>, and <strong>Settings</strong>. The
+    secondary/right-click menu adds <strong>Status</strong>, <strong>Review Queue</strong>,
+    <strong>Check Now</strong>, <strong>Diagnostics</strong>, and <strong>Quit</strong>.
+  </p>
+  <p>
+    The active tray process polls enabled, account-bound GitHub repositories and persists eligible
+    revisions in the Review Queue. Assigned Copilot agents can review each admitted revision
+    manually or through an automatic-start gate, with validated results kept locally. A separate
+    publication gate submits one revision-bound GitHub <code>COMMENT</code> review — nothing posts
+    without that gate.
+  </p>
+
+  <h2>Multi-account by design</h2>
+  <p>
+    Settings manages independent Copilot AI accounts with browser sign-in and per-agent
+    account/model selection, so review capacity isn't tied to a single credential.
+  </p>
+
+  <h2>Install</h2>
+  <p class="muted">Apple Silicon, macOS 13.5+:</p>
+  <pre><code>brew install --cask jdylanmc/pr-sniper/pr-sniper</code></pre>
+  <p class="muted">
+    Developer ID-signed, notarized, and stapled. Homebrew owns updates — there's no in-app
+    updater. Quit the app before <code>brew upgrade --cask pr-sniper</code>; upgrades and
+    uninstalls preserve saved state and credentials.
+  </p>
+
+  <h2>Develop it</h2>
+  <pre><code>npm ci
+npm run tauri -- dev</code></pre>
+  <p class="muted">
+    Requires Xcode Command Line Tools, Node 24.20.0, and Rust 1.98.1 via rustup — versions pinned
+    by <code>.node-version</code>, <code>rust-toolchain.toml</code>, and the lockfiles. No main
+    window opens at startup; click the crosshair in the menu bar.
+  </p>
+
+  <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+</Layout>

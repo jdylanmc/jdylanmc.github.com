@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="CMUX Maestro — Dylan McCurry">
+  <span class="eyebrow">Project</span>
+  <h1>CMUX Maestro</h1>
+  <p class="muted">
+    An independent, compiled macOS sidebar extension for CMUX — the orchestration surface that
+    gives me visibility into what my agents are doing, instead of trusting a terminal scrollback.
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">Swift</span>
+    <span class="tag">macOS 14+</span>
+    <span class="tag">ExtensionKit</span>
+    <span class="tag">Xcode 26.6</span>
+  </div>
+  <a class="btn" href="https://github.com/jdylanmc/cmux-maestro" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+
+  <h2>Why it exists</h2>
+  <p>
+    Managing an AI collaborator means knowing its state at a glance: is it connected, is it
+    running, did something degrade. CMUX Maestro proves out the containing-app and sandboxed
+    ExtensionKit boundary first — before any live agent-provider data touches it — so the
+    foundation is trustworthy before it's useful.
+  </p>
+
+  <h2>What it shows today</h2>
+  <ul>
+    <li><strong>Waiting</strong> — the host connection or first snapshot isn't available yet.</li>
+    <li><strong>Connected</strong> — counts derived from the CMUX-provided snapshot.</li>
+    <li><strong>Degraded</strong> — CMUX reports a connection error.</li>
+  </ul>
+  <p class="muted">
+    No live agent-provider data, observer daemon, hooks, transport, or Agent Session fixtures yet —
+    deliberately. The existing interpreted Maestro remains a separate, untouched project and can be
+    used alongside this preview.
+  </p>
+
+  <h2>How it's built</h2>
+  <p>
+    It follows CMUX's official <code>Examples/SampleSidebarExtensionApp</code> reference at a
+    pinned commit, with the sample feature UI stripped out. The CMUX ExtensionKit SDK is fetched
+    into an ignored <code>vendor/</code> directory and never committed.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Component</th><th>Identifier</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Containing app</td><td><code>com.jdylanmc.CMUXMaestroPreview</code></td></tr>
+      <tr><td>Sidebar extension</td><td><code>com.jdylanmc.CMUXMaestroPreview.Extension</code></td></tr>
+      <tr><td>Extension point</td><td><code>com.cmuxterm.app.cmux.sidebar</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Build it yourself</h2>
+  <pre><code>./scripts/fetch-sdk.sh
+./scripts/build-unsigned.sh
+./scripts/test.sh</code></pre>
+  <p class="muted">
+    <code>build-unsigned.sh</code> disables signing for automation; <code>test.sh</code> runs the
+    focused connection-state tests without a development identity. For a local ad hoc proof with no
+    Apple Development identity required:
+  </p>
+  <pre><code>./scripts/build-register.sh</code></pre>
+  <p class="muted">
+    This builds with <code>CODE_SIGN_IDENTITY=-</code>, registers the embedded extension with
+    <code>pluginkit</code>, and verifies discovery — without enabling it or selecting it as CMUX's
+    active sidebar provider. To use it, open CMUX's Sidebar Extensions browser, enable
+    <strong>CMUX Maestro Preview</strong>, and select it manually.
+  </p>
+
+  <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+</Layout>

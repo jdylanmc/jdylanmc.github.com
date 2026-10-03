@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Wikipedia Visualization — Dylan McCurry">
+  <span class="eyebrow">Look what I built, long before AI was a thing</span>
+  <h1>Wikipedia Visualization</h1>
+  <p class="muted">
+    A force-directed 3D graph explorer built during graduate school at MTSU (Middle Tennessee State
+    University) in 2011. Search any topic, and it pulls live Wikipedia data, extracts outbound
+    links, and renders an interactive Three.js graph you can click through.
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">Three.js</span>
+    <span class="tag">Wikipedia API</span>
+    <span class="tag">2011</span>
+  </div>
+  <a class="btn" href="https://github.com/jdylanmc/Wikipedia-Visualization" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+
+  <h2>Live demo</h2>
+  <p class="muted">
+    Type a topic and hit Go. Click any node to expand its links. Rotate with the left mouse
+    button, hold S to zoom, hold D to drag.
+  </p>
+  <div class="demo-frame">
+    <iframe
+      src="/demos/wikipedia-viz/index.html"
+      title="Wikipedia Visualization demo"
+      loading="lazy"
+      width="100%"
+      height="620"
+    ></iframe>
+  </div>
+
+  <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+</Layout>
+
+<style>
+  .demo-frame {
+    margin: 1.5rem 0 2.5rem;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+
+  .demo-frame iframe {
+    display: block;
+    border: 0;
+    width: 100%;
+  }
+</style>

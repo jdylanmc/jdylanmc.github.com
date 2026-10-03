@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="JS Particle Engine — Dylan McCurry">
+  <span class="eyebrow">Look what I built, long before AI was a thing</span>
+  <h1>JS Particle Engine</h1>
+  <p class="muted">
+    A WebGL particle system built from scratch for a game engine architecture course at MTSU
+    (Middle Tennessee State University) — flames, fog, and a rotating textured cube, all hand-rolled
+    shader code. Circa 2011, no framework, no AI, just raw GLSL and jQuery UI sliders.
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">WebGL</span>
+    <span class="tag">GLSL</span>
+    <span class="tag">2011</span>
+  </div>
+  <a class="btn" href="https://github.com/jdylanmc/JS-Particle-Engine" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+
+  <h2>Live demo</h2>
+  <p class="muted">
+    Drag the sliders to control force, angle, spawn rate, speed, and lifetime. Pick a texture from
+    the dropdown to swap the particle sprite.
+  </p>
+  <div class="demo-frame">
+    <iframe
+      src="/demos/particle-engine/index.html"
+      title="JS Particle Engine demo"
+      loading="lazy"
+      width="1024"
+      height="768"
+    ></iframe>
+  </div>
+
+  <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+</Layout>
+
+<style>
+  .demo-frame {
+    margin: 1.5rem 0 2.5rem;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    overflow: auto;
+    background: #fff;
+  }
+
+  .demo-frame iframe {
+    display: block;
+    border: 0;
+    max-width: 100%;
+  }
+</style>

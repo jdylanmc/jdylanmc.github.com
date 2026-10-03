@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const chunks = [
+  {
+    title: "home/.zshenv",
+    tag: "Every Zsh invocation",
+    body: "Portable environment setup that must run for every Zsh invocation — login, interactive, or a one-off script shell. Keeping it separate from .zshrc means non-interactive tools get the right PATH and environment without paying for interactive-shell setup.",
+  },
+  {
+    title: "home/.zshrc",
+    tag: "Interactive shell",
+    body: "Owns interactive shell behavior: prompt, plugins, aliases, and the GitHub account binding described below. This is the file doing the most day-to-day work.",
+  },
+  {
+    title: "home/.gitconfig",
+    tag: "Identity-free, shared",
+    body: "Identity-free shared Git behavior — safe to track publicly because it contains no names, emails, or credentials. Uses Delta for paged and interactive diffs.",
+  },
+  {
+    title: "~/.gitconfig.personal / .work / .local",
+    tag: "Untracked, mode 0600",
+    body: "Private, machine-specific identity files the installer creates but never commits. .gitconfig.personal is the personal identity used under ~/git/_opensource/; .gitconfig.work is an optional default identity outside it; .gitconfig.local routes which one applies. Actual names, emails, and signing identities never enter the repository.",
+  },
+  {
+    title: "home/.config/starship.toml",
+    tag: "Prompt",
+    body: "Starship prompt configuration — linked individually so the terminal prompt is consistent across machines without pulling in anything identity-bound.",
+  },
+  {
+    title: "scripts/setup-git.sh",
+    tag: "Guided setup",
+    body: "Run to configure or update Git identities interactively. Work identity routing stays inactive until a complete personal identity exists, so it can never leak into _opensource checkouts by accident.",
+  },
+  {
+    title: "ghwho / ghuse",
+    tag: "Account routing",
+    body: "home/.zshrc binds the gh CLI to the GitHub account matching the current directory, so a machine with multiple authenticated accounts can't act as the wrong one. ghwho reports the account in effect; ghuse <handle> pins one for the current shell; ghuse with no argument resumes directory tracking. GH_TOKEN is exported per-shell rather than swapping gh's global active account, so concurrent shells in different directories don't fight over one setting.",
+  },
+  {
+    title: "scripts/check-public.sh",
+    tag: "Pre-commit / pre-push",
+    body: "Versioned public-content checks installed as Git hooks — a guard against ever committing something private into a repository that's meant to stay public.",
+  },
+  {
+    title: "install.sh",
+    tag: "Entry point",
+    body: "Installs declared public Homebrew dependencies, installs Oh My Zsh plus autosuggestions and syntax-highlighting, backs up conflicting live files, links repository-owned config into $HOME, installs the HerdR integration for GitHub Copilot CLI, guides Git identity setup, optionally installs Maestro (--with-maestro), and enables the pre-commit/pre-push checks.",
+  },
+];
+---
+
+<Layout title="Dotfiles — Dylan McCurry">
+  <span class="eyebrow">Project</span>
+  <h1>Dotfiles</h1>
+  <p class="muted">
+    Public, source-controlled macOS development configuration. Files under <code>home/</code> are
+    authoritative and symlinked straight into <code>$HOME</code> — editing a linked file edits the
+    repository copy, so there's never a drift between "what's documented" and "what's running."
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">Shell</span>
+    <span class="tag">Zsh</span>
+    <span class="tag">Git</span>
+    <span class="tag">Homebrew</span>
+  </div>
+  <a class="btn" href="https://github.com/jdylanmc/dotfiles" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+
+  <h2>Fresh Mac</h2>
+  <pre><code>git clone https://github.com/jdylanmc/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./install.sh --with-maestro</code></pre>
+  <p class="muted">
+    Use <code>--no-brew</code> to skip package installation, omit <code>--with-maestro</code> to
+    install only dotfiles, or <code>--no-git-setup</code> to skip guided Git identity prompts.
+  </p>
+
+  <h2>Chunk by chunk</h2>
+  <p class="muted">What each part is for, and why it's structured that way.</p>
+
+  <div>
+    {chunks.map((c) => (
+      <div class="chunk">
+        <span class="tag">{c.tag}</span>
+        <h3><code>{c.title}</code></h3>
+        <p class="muted">{c.body}</p>
+      </div>
+    ))}
+  </div>
+
+  <h2>Why separate from Maestro</h2>
+  <p>
+    The reusable coding-agent workspace lives separately in
+    <a href="https://github.com/jdylanmc/maestro" target="_blank" rel="noreferrer">jdylanmc/maestro</a>.
+    Until Maestro v2 ships, <code>--with-maestro</code> installs its preserved <code>proto-v1</code>
+    launcher — dotfiles owns personal shell/terminal preferences, not agent orchestration.
+  </p>
+
+  <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+</Layout>

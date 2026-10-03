@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const projects = [
+  {
+    href: "/projects/cmux-maestro",
+    title: "CMUX Maestro",
+    description: "The orchestration plugin — sidebar visibility into what my agents are actually doing.",
+  },
+  {
+    href: "/projects/pr-sniper",
+    title: "PR Sniper",
+    description: "A menu-bar app so pull requests get human-owned review, not rubber-stamps.",
+  },
+  {
+    href: "/projects/dotfiles",
+    title: "Dotfiles",
+    description: "The environment, chunk by chunk — what every file does and why it's there.",
+  },
+  {
+    href: "/projects/cacophony",
+    title: "Cacophony",
+    description: "Adversarial PR review by six AI personas, so one agent's code doesn't just get rubber-stamped by another.",
+  },
+  {
+    href: "https://jdylanmc.github.io/topo-code/",
+    title: "Topocode",
+    description: "Living architecture diagrams generated from the repository itself.",
+    external: true,
+  },
+];
+---
+
+<Layout title="Dylan McCurry — I manage an AI now">
+  <span class="eyebrow">Hi, I'm Dylan</span>
+  <h1>I was a software engineer for 15 years.</h1>
+  <h1>
+    Then some guy named <span style="color: var(--accent)">Claude</span> took my job.
+  </h1>
+  <p class="muted" style="font-size: 1.1rem; max-width: 60ch;">
+    So I became his manager. Turns out fifteen years of writing code was decent preparation for
+    reviewing someone else's — even when that someone else is an AI, works at 3am, and has never
+    once asked for a raise.
+  </p>
+
+  <div style="margin: 2rem 0; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+    <a class="btn" href="/about">The full story</a>
+    <a class="btn btn--ghost" href="/projects">My environment</a>
+  </div>
+
+  <hr />
+
+  <h2>My digital garden</h2>
+  <p class="muted">
+    The tooling I've built to keep an AI direct report honest, reviewable, and productive. Each
+    project below has its own page.
+  </p>
+
+  <div class="card-grid">
+    {projects.map((p) => (
+      <a class="card" href={p.href} target={p.external ? "_blank" : undefined} rel={p.external ? "noreferrer" : undefined}>
+        <h3>{p.title}{p.external ? " ↗" : ""}</h3>
+        <p class="muted">{p.description}</p>
+      </a>
+    ))}
+  </div>
+
+  <hr />
+
+  <span class="eyebrow">Look what I built, long before AI was a thing</span>
+  <h2>The archive (2011, MTSU)</h2>
+  <p class="muted">Two demos restored to actually run — WebGL particles and a live Wikipedia graph explorer.</p>
+  <div class="card-grid">
+    <a class="card" href="/projects/particle-engine">
+      <h3>JS Particle Engine</h3>
+      <p class="muted">A hand-rolled WebGL particle system from a game engine architecture course.</p>
+    </a>
+    <a class="card" href="/projects/wikipedia-visualization">
+      <h3>Wikipedia Visualization</h3>
+      <p class="muted">A live 3D force-directed graph of Wikipedia topics, built in grad school.</p>
+    </a>
+  </div>
+</Layout>

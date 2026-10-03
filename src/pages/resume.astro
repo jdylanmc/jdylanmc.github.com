@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const timeline = [
+  {
+    role: "Software Engineer",
+    org: "Xbox",
+    period: "Current · 5 years",
+    detail:
+      "Xbox Player Experiences (XPE), on the Xbox Media team. Shipping React Native Windows surfaces, GameStreaming client experiences, and increasingly, agent-orchestrated engineering workflows.",
+  },
+  {
+    role: "Consulting CMS Engineer",
+    org: "Brainjocks",
+    period: "8 years",
+    detail:
+      "Enterprise Sitecore/CMS consulting across client engagements — architecture, custom modules, and delivery under real deadlines.",
+  },
+  {
+    role: "Software Engineer",
+    org: "HCA Healthcare",
+    period: "5 years",
+    detail: "Healthcare software engineering — systems that had to be correct, not just shipped.",
+  },
+];
+---
+
+<Layout title="Resume — Dylan McCurry">
+  <span class="eyebrow">Resume</span>
+  <h1>15 years of shipping software. Currently: middle management.</h1>
+  <p class="muted">
+    The short version: healthcare, enterprise CMS, then games. The longer version is a career spent
+    being the engineer in the room — now I'm the one reviewing an AI's pull requests instead.
+  </p>
+
+  <div style="margin: 2.5rem 0;">
+    {timeline.map((job) => (
+      <div class="chunk">
+        <span class="tag">{job.period}</span>
+        <h3>{job.role} · {job.org}</h3>
+        <p class="muted">{job.detail}</p>
+      </div>
+    ))}
+  </div>
+
+  <h2>Education</h2>
+  <p class="muted">Middle Tennessee State University (MTSU)</p>
+
+  <hr />
+
+  <p>
+    Want the full employment-history version? <a href="/links">Find me on LinkedIn</a> via the
+    links page, or <a href="/about">read the longer story</a>.
+  </p>
+</Layout>

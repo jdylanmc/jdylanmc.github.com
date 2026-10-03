@@ -1,0 +1,63 @@
+---
+const themes = [
+  { id: "terminal", label: "Terminal (Nord)" },
+  { id: "editorial", label: "Minimal Editorial" },
+  { id: "org-chart", label: "Org Chart" },
+  { id: "perf-review", label: "Performance Review" },
+  { id: "digital-garden", label: "Digital Garden" },
+  { id: "postmortem", label: "Incident Postmortem" },
+  { id: "brutalist", label: "Brutalist Memo" },
+  { id: "command-palette", label: "Command Palette" },
+  { id: "game-save", label: "Game Save File" },
+  { id: "dashboard", label: "Dashboard" },
+  { id: "noir", label: "Noir Detective" },
+  { id: "swiss", label: "Swiss Grid" },
+];
+---
+
+<div class="theme-toggle">
+  <label for="theme-select" class="visually-hidden">Theme</label>
+  <select id="theme-select" aria-label="Site theme">
+    {themes.map((t) => (
+      <option value={t.id}>{t.label}</option>
+    ))}
+  </select>
+</div>
+
+<style>
+  .theme-toggle select {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    background: var(--bg-elevated);
+    color: var(--fg);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = "site-theme";
+    var select = document.getElementById("theme-select");
+    if (!select) return;
+    select.value = document.documentElement.getAttribute("data-theme") || "terminal";
+    select.addEventListener("change", function (e) {
+      var theme = e.target.value;
+      document.documentElement.setAttribute("data-theme", theme);
+      try {
+        localStorage.setItem(STORAGE_KEY, theme);
+      } catch (err) {}
+    });
+  })();
+</script>

@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const reviewers = [
+  "Gilfoyle",
+  "Solid Snake",
+  "GLaDOS",
+  "Master Chief",
+  "Fletcher",
+  "Delamain",
+];
+---
+
+<Layout title="Cacophony — Dylan McCurry">
+  <span class="eyebrow">Project</span>
+  <h1>Cacophony</h1>
+  <p class="muted">
+    A GitHub Action that runs adversarial pull request reviews from prompt-defined agent lenses —
+    because one AI reviewing another AI's code needs more than a single polite opinion.
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">GitHub Actions</span>
+    <span class="tag">Azure AI Foundry</span>
+    <span class="tag">No runtime deps</span>
+  </div>
+  <a class="btn" href="https://github.com/jdylanmc/cacophony" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+
+  <h2>What it does</h2>
+  <p>
+    One action invocation runs one Markdown prompt, inspects the checked-out pull request with
+    bounded read-only tools, and writes a canonical JSON report, a human-readable Markdown report,
+    and action outputs for verdict, severity, report paths, and agent ID. The consuming repository
+    owns orchestration — run multiple prompts as sequential steps, matrix jobs, or separate
+    workflows. Cacophony itself has no runtime package dependencies, install step, build step, or
+    generated distribution bundle.
+  </p>
+
+  <h2>Dogfooding: six adversarial reviewers</h2>
+  <p>
+    The repository runs its own medicine through six canonical adversarial reviewer personas, each
+    a distinct prompt under <code>.cacophony/agents/</code>, each running independently on pull
+    requests:
+  </p>
+  <div class="card-grid">
+    {reviewers.map((name) => (
+      <div class="card" style="cursor: default;">
+        <h3>{name}</h3>
+      </div>
+    ))}
+  </div>
+
+  <h2>Trust boundary for fork review</h2>
+  <p>
+    Pull-request personas are thin <code>pull_request_target</code> callers of a reusable worker
+    that owns the pinned Cacophony invocation, authorization, trusted merge-ref checkout, secret
+    scope, and artifact upload. Before checkout, it rejects any event that isn't a pull request,
+    allows same-repository pull requests, and allows a fork only when GitHub's
+    <code>author_association</code> is <code>OWNER</code>, <code>MEMBER</code>, or
+    <code>COLLABORATOR</code> — inspecting pull-request content without executing it.
+  </p>
+
+  <h2>Setup</h2>
+  <ol>
+    <li>Create the repository secret <code>CACOPHONY_AZURE_API_KEY</code>.</li>
+    <li>Create the repository variable <code>CACOPHONY_AZURE_ENDPOINT</code> with an Azure AI Foundry project or OpenAI-compatible endpoint.</li>
+    <li>Pin a release: <code>jdylanmc/cacophony@v0.1.0</code>, or float on <code>@v0</code> / <code>@v0.1</code>.</li>
+  </ol>
+
+  <a class="btn btn--ghost" href="/projects">&larr; Back to projects</a>
+</Layout>
