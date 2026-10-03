@@ -6,64 +6,129 @@ const chunks = [
     title: "home/.zshenv",
     tag: "Every Zsh invocation",
     path: "~/.zshenv",
-    what: "Portable environment setup — PATH, exported variables, and tool init that must run for every Zsh invocation: login, interactive, or a one-off script shell.",
-    why: "Keeping it separate from .zshrc means non-interactive tools (cron, CI steps, editor subshells) get the right environment without paying for interactive-shell setup they'll never use.",
+    lines: `export PATH="$HOME/.local/bin:$PATH"`,
+    what: "One line. Fix PATH. Run every shell, no matter what.",
+    why: "Script shell no need prompt, no need plugin. Just need PATH right. Put heavy stuff elsewhere, this file stay fast.",
   },
   {
     title: "home/.zshrc",
     tag: "Interactive shell",
     path: "~/.zshrc",
-    what: "Interactive shell behavior: prompt, Oh My Zsh plugins, aliases, and the ghwho/ghuse GitHub account-routing functions.",
-    why: "This is the file doing the most day-to-day work, so it's the one most worth reading end to end before trusting a new machine.",
+    lines: `plugins=(
+  git
+  brew
+  yarn
+  nvm
+  docker
+  docker-compose
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+...
+eval "$(starship init zsh)"`,
+    what: "Big file. Plugins, prompt, aliases, account-switch brain. Where shell get personality.",
+    why: "Only human eyeball this one when thing feel weird. Keep all the 'make terminal nice' stuff in one place, not scattered.",
   },
   {
     title: "home/.gitconfig",
     tag: "Identity-free, shared",
     path: "~/.gitconfig",
-    what: "Shared Git behavior — aliases, Delta as the paged/interactive diff viewer, and sane defaults. Contains zero names, emails, or credentials.",
-    why: "Identity-free means it's safe to track publicly. Anything that could leak who I am or who I work for lives in untracked files instead (below).",
+    lines: `[user]
+  useConfigOnly = true
+
+[core]
+  editor = code --wait
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only`,
+    what: "Git behave good. Pretty diffs. No name, no email inside.",
+    why: "No identity in this file means safe to show whole world. Identity hide in other files, never pushed.",
   },
   {
     title: "~/.gitconfig.personal / .work / .local",
     tag: "Untracked, mode 0600",
     path: "~/.gitconfig.local",
-    what: "Private, machine-specific identity files the installer creates but never commits: .gitconfig.personal (used under ~/git/_opensource/), .gitconfig.work (used elsewhere), and .gitconfig.local, which routes between them by directory.",
-    why: "Actual names, emails, and signing identities never enter the repository — so the dotfiles stay public without ever risking a leaked work identity in an open-source checkout.",
+    lines: `[include]
+  path = ~/.gitconfig.local
+
+[includeIf "gitdir:~/git/_opensource/"]
+  path = ~/.gitconfig.personal`,
+    what: "Three secret files. Installer make them, Git never commit them. One for personal, one for work, one picks which.",
+    why: "Name and email too risky for public repo. Keep private files on disk only, folder decides which identity apply.",
   },
   {
     title: "home/.config/starship.toml",
     tag: "Prompt",
     path: "~/.config/starship.toml",
-    what: "Starship prompt configuration, linked on its own rather than bundled into .zshrc.",
-    why: "A consistent prompt across every machine, without pulling in anything identity-bound to get it.",
+    lines: `"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+
+[aws]
+symbol = " "
+
+[battery]
+discharging_symbol = "󰂃 "`,
+    what: "Prompt config. Own file, not stuffed in .zshrc.",
+    why: "Prompt look same on every machine. No identity stuff needed to make it pretty.",
   },
   {
     title: "scripts/setup-git.sh",
     tag: "Guided setup",
     path: "~/.dotfiles/scripts/setup-git.sh",
-    what: "An interactive prompt flow to configure or update Git identities after install.",
-    why: "Work identity routing stays inactive until a complete personal identity exists, so it can never silently leak into an _opensource checkout by accident.",
+    lines: `#!/usr/bin/env bash
+set -euo pipefail
+
+source "$ROOT/scripts/lib/install.sh"
+source "$ROOT/scripts/install/git.sh"
+
+init_install
+setup_git_guided`,
+    what: "Ask questions. Set up Git identity. Run after install.",
+    why: "Work identity stay off until personal identity exist first. No accident leak into open-source folder.",
   },
   {
     title: "ghwho / ghuse",
     tag: "Account routing (in .zshrc)",
     path: "~/.zshrc",
-    what: "Shell functions binding the gh CLI to the GitHub account matching the current directory. ghwho reports the account in effect; ghuse <handle> pins one for the current shell; ghuse with no argument resumes directory tracking.",
-    why: "GH_TOKEN is exported per-shell rather than swapping gh's one global active account, so concurrent shells in different directories can't fight over — or silently inherit — the wrong identity.",
+    lines: `ghwho() {
+  print "\${_GH_ACCOUNT:-none} (from directory profile)"
+}
+
+ghuse() {
+  export GH_TOKEN="$(GH_TOKEN= gh auth token -u "$1")"
+  export _GH_ACCOUNT="$1"
+  export _GH_ACCOUNT_PINNED="$1"
+}`,
+    what: "Two function. ghwho say who you are. ghuse pin different account.",
+    why: "Many GitHub account, one machine. Token swap per-shell so two terminal no fight over same account.",
   },
   {
     title: "scripts/check-public.sh",
     tag: "Pre-commit / pre-push",
     path: "~/.dotfiles/scripts/check-public.sh",
-    what: "Versioned checks installed as Git hooks that scan staged/pushed content for anything that looks private.",
-    why: "A guard against ever committing something private into a repository that's meant to stay public — checked by the machine, not just by memory.",
+    lines: `blocked_paths='(\\.env|\\.npmrc|credentials|secrets|\\.ssh/|\\.aws/)'
+secret_patterns='(AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,}|-----BEGIN.*PRIVATE KEY-----)'
+work_patterns='(microsoft|xbox|xgang|fresno|garrison)'`,
+    what: "Robot hook. Scan every commit and push for secret, key, work word.",
+    why: "Human forget. Machine no forget. Bad thing blocked before it leave laptop.",
   },
   {
     title: "install.sh",
     tag: "Entry point",
     path: "~/.dotfiles/install.sh",
-    what: "Installs declared public Homebrew dependencies, installs Oh My Zsh plus plugins, backs up conflicting live files, links repository-owned config into $HOME, installs the HerdR integration for GitHub Copilot CLI, guides Git identity setup, optionally installs Maestro (--with-maestro), and enables the pre-commit/pre-push hooks.",
-    why: "One script, run once per machine — so a fresh Mac reaches the exact same environment as every other one, instead of a remembered checklist.",
+    lines: `#!/usr/bin/env bash
+set -euo pipefail
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --no-brew) use_brew=0; shift ;;
+    --with-maestro) with_maestro=1; shift ;;
+    --no-git-setup) git_setup=0; shift ;;
+  esac
+done`,
+    what: "One script. Run once. New Mac become old Mac.",
+    why: "No checklist in head. No forgotten step. Same script, same result, every machine.",
   },
 ];
 ---
@@ -107,6 +172,7 @@ cd ~/.dotfiles
           </button>
         </div>
         <span class="tag">{c.tag}</span>
+        <pre class="chunk-lines"><code>{c.lines}</code></pre>
         <div class="chunk-ww">
           <div>
             <span class="chunk-wlabel">What</span>
@@ -182,6 +248,10 @@ cd ~/.dotfiles
       letter-spacing: 0.08em;
       color: var(--accent);
       margin-bottom: 0.25rem;
+    }
+    .chunk-lines {
+      margin: 0.75rem 0;
+      font-size: 0.82rem;
     }
   </style>
 
