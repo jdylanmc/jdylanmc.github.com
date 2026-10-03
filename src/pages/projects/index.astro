@@ -5,42 +5,39 @@ import Layout from "../../layouts/Layout.astro";
 // `thing` is the specific project/deliverable, which becomes the card title.
 const timeline = [
   {
-    period: "2024 – now",
     year: "Now",
-    org: "Xbox",
-    role: "Xbox Player Experiences",
-    thing: "Player-facing Xbox experiences",
+    org: "XBOX",
+    role: "XBOX Player Experiences",
+    thing: "Player-facing XBOX experiences",
     desc: "Working on a variety of projects and surfaces for current in-market player experiences.",
   },
   {
-    period: "2022 – 2024",
     year: "~2023",
-    org: "Xbox",
+    org: "XBOX",
     role: "Developer Experiences",
     thing: "Microsoft Game Dev marketing site",
     desc: "Built the public-facing Microsoft Game Dev marketing site in Adobe Experience Manager.",
+    links: [{ href: "https://aka.ms/gamedev", label: "Visit site", external: true }],
   },
   {
-    period: "2022 – 2024",
     year: "~2022",
-    org: "Xbox",
+    org: "XBOX",
     role: "Developer Experiences",
     thing: "Developer coordination forums",
     desc: "Built and owned forums used to coordinate across developer teams.",
   },
   {
-    period: "2022 – 2024",
     year: "~2022",
-    org: "Xbox",
+    org: "XBOX",
     role: "Developer Experiences",
     thing: "Secure documentation portals",
-    desc: "Built and owned internal, access-controlled documentation portals for Xbox developers.",
+    desc: "Built and owned internal, access-controlled documentation portals for XBOX developers.",
   },
   {
     milestone: true,
     year: "~2022",
-    thing: "Joined Xbox",
-    desc: "Moved from Perficient into Xbox Developer Experiences.",
+    thing: "Joined XBOX",
+    desc: "Moved from Perficient into XBOX Developer Experiences.",
   },
   {
     period: "2020 – 2022",
@@ -252,7 +249,14 @@ const timeline = [
             {item.links && (
               <div class="timeline-links">
                 {item.links.map((l) => (
-                  <a class="btn btn--ghost" href={l.href}>{l.label}</a>
+                  <a
+                    class="btn btn--ghost"
+                    href={l.href}
+                    target={l.external ? "_blank" : undefined}
+                    rel={l.external ? "noreferrer" : undefined}
+                  >
+                    {l.label}{l.external ? " ↗" : ""}
+                  </a>
                 ))}
               </div>
             )}
