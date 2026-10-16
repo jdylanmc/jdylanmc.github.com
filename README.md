@@ -17,7 +17,7 @@ src/
     ├── resume.astro
     ├── links.astro
     ├── blog/
-    └── projects/      # One page per project (cmux-maestro, pr-sniper, dotfiles, cacophony,
+    └── projects/      # One page per project (cmux-maestro, dotfiles, cacophony,
                         # plus two restored 2011 demos)
 public/demos/          # Static legacy demo apps (JS Particle Engine, Wikipedia Visualization),
                         # embedded live via <iframe> on their project pages.
