@@ -18,8 +18,9 @@ const builtOnTop = [
       "The orchestration plugin for CMUX — a sidebar surface for multi-agent visibility, built as a sandboxed ExtensionKit boundary.",
   },
   {
-    href: "/projects/pr-sniper",
+    href: "https://jdylanmc.github.io/pr-sniper/",
     title: "PR Sniper",
+    external: true,
     tags: ["Tauri", "Rust", "TypeScript"],
     description:
       "A macOS menu-bar app for human-owned pull request review — a queue, assigned agent review, and a publication gate a human controls.",
@@ -78,8 +79,8 @@ const forkedAndAdapted = [
   <h2>Built on top of it</h2>
   <div class="card-grid">
     {builtOnTop.map((p) => (
-      <a class="card" href={p.href}>
-        <h3>{p.title}</h3>
+      <a class="card" href={p.href} target={p.external ? "_blank" : undefined} rel={p.external ? "noreferrer" : undefined}>
+        <h3>{p.title}{p.external ? " ↗" : ""}</h3>
         <p class="muted">{p.description}</p>
         <div>
           {p.tags.map((t) => (
