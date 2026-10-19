@@ -18,8 +18,8 @@ src/
     ├── links.astro
     ├── blog/
     └── projects/      # One page per project (cmux-maestro, dotfiles, cacophony,
-                        # plus two restored 2011 demos)
-public/demos/          # Static legacy demo apps (JS Particle Engine, Wikipedia Visualization),
+                        # plus restored 2011 demos)
+public/demos/          # Static legacy demo apps (JS Particle Engine, Wikipedia Visualization, Outbreak),
                         # embedded live via <iframe> on their project pages.
 ```
 
