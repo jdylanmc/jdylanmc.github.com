@@ -1,0 +1,86 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const concepts = [
+  { name: "Animation", what: "Skeletal clips — idle, jog, walk and die — blended at runtime as zombies notice you, chase you and fall." },
+  { name: "Rigging", what: "A rigged, skinned zombie model driven by a bone hierarchy." },
+  { name: "Custom UI", what: "Hand-drawn menu, difficulty picker with hover states, crosshair, segmented health bar and game-over screen." },
+  { name: "Sound", what: "Shotgun blasts and rain ambience layered over the scene." },
+  { name: "Particles", what: "Falling rain, muzzle sparks, and blood splatter on zombies and on screen when you get bitten." },
+];
+---
+
+<Layout title="Outbreak — Dylan McCurry">
+  <span class="eyebrow">Look what I built, long before AI was a thing</span>
+  <h1>Outbreak</h1>
+  <p class="muted">
+    A first-person zombie shooter built in grad school at MTSU (Middle Tennessee State
+    University) for a game engine architecture course, circa 2011–2012. The assignment was to
+    demonstrate the core pieces of a game engine in one playable game. It originally shipped for
+    the Unity Web Player, a browser plugin that no longer exists.
+  </p>
+  <div style="margin-bottom: 1.5rem;">
+    <span class="tag">Unity 3.4</span>
+    <span class="tag">UnityScript</span>
+    <span class="tag">WebGL</span>
+    <span class="tag">2011</span>
+  </div>
+  <a class="btn" href="/demos/outbreak/index.html" target="_blank" rel="noreferrer">Play in a new tab ↗</a>
+
+  <h2>Live demo</h2>
+  <p class="muted">
+    Pick a difficulty and click <strong>Start</strong>. Move with <strong>WASD</strong> or the
+    arrow keys, look with the mouse, <strong>click</strong> to fire and press
+    <strong>Space</strong> to jump. Zombies that spot you will chase you down; every kill and
+    every second survived scores points, and every bite halves them. The game loads about 24 MB.
+  </p>
+
+  <div class="game-frame">
+    <iframe src="/demos/outbreak/index.html" title="Outbreak" loading="lazy" width="1024" height="820" allow="fullscreen"></iframe>
+  </div>
+
+  <h2>What it demonstrates</h2>
+  <ul class="concepts">
+    {concepts.map((c) => (
+      <li><strong>{c.name}</strong> — <span class="muted">{c.what}</span></li>
+    ))}
+  </ul>
+
+  <h2>Restored in 2026</h2>
+  <p class="muted">
+    The original Unity 3.4 project was brought forward to Unity 6 and rebuilt for WebGL without
+    redesigning the game: the original asset identities were recovered from the 2011 project
+    cache, the UnityScript gameplay code was ported line-for-line to C#, and the GUI and particle
+    systems Unity has since removed were recreated from their saved 2011 settings. The only
+    deliberate change is that the HUD now fits the 1024×768 frame the game shipped at.
+  </p>
+
+  <a class="btn btn--ghost" href="/">&larr; Back to home</a>
+</Layout>
+
+<style>
+  /* The game renders at a fixed 1024x768, wider than the content column; let it break out
+     and center on wide screens, and scroll horizontally on narrow ones. */
+  .game-frame {
+    width: min(1026px, 100vw);
+    margin: 1.5rem 0 2.5rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow-x: auto;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+  }
+
+  .game-frame iframe {
+    display: block;
+    border: 0;
+    width: 1024px;
+    height: 820px;
+  }
+
+  .concepts {
+    padding-left: 1.25rem;
+    line-height: 1.7;
+  }
+</style>
